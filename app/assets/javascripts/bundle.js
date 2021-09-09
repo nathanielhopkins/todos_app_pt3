@@ -1367,12 +1367,20 @@ var configureStore = function configureStore() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "fetchTodos": () => (/* binding */ fetchTodos)
+/* harmony export */   "fetchTodos": () => (/* binding */ fetchTodos),
+/* harmony export */   "createTodo": () => (/* binding */ createTodo)
 /* harmony export */ });
 var fetchTodos = function fetchTodos() {
   return $.ajax({
     method: 'GET',
     url: '/api/todos'
+  });
+};
+var createTodo = function createTodo(todo) {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/todos',
+    data: todo
   });
 };
 
