@@ -13,3 +13,255 @@
  *= require_tree .
  *= require_self
  */
+
+ /* Reset  */
+
+html, body, header, nav, h1, a,
+ul, li, strong, main, i,
+section, img, div, h2, h3, p, form,
+fieldset, label, input, textarea,
+span, article, footer, time, small {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: sans-serif;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  box-sizing: inherit;
+  background: transparent;
+  list-style: inherit;
+}
+
+body {
+  font-family: Urbanist;
+  font-size: 18px;
+}
+
+/* Todo App */
+
+.todo-app {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-header {
+  text-align: center;
+  background: rgb(18, 92, 18);
+  color: white;
+  padding: 10px;
+  -webkit-text-stroke: 1px black;
+  text-shadow:
+    3px 3px 0 #000,
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.todo-list-container {
+  display: flex;
+  flex-direction: row;
+  margin: 30px;
+}
+
+
+/* Todo Form  */
+
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  padding-bottom: 70vh;
+  border-right: 1px solid darkgray;
+}
+
+.todo-form-header {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.form-text-input {
+  font-family: Urbanist;
+  background-color: white;
+  height: 25px;
+  width: 250px;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin-left: 5px;
+  margin-right: 20px;
+  padding-left: 10px;
+}
+
+.tags {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: rgba(236, 204, 122, 0.918);
+  border-radius: 5px;
+  width: 280px;
+  box-shadow:
+    3px 3px 0 #000,
+    -1px 0px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.tag-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 360px;
+}
+
+.tag-button {
+  font-family: Urbanist;
+  text-align: center;
+  font-size: 14px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  padding: 5px 15px;
+  background: rgba(236, 204, 122, 0.918);
+  border-radius: 5px;
+}
+
+.tag-button:hover {
+  cursor: pointer;
+  background: rgba(190, 164, 98, 0.918);
+}
+
+.form-button {
+  display: block;
+  font-family: Urbanist;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 5px;
+  background:rgb(18, 92, 18);
+  margin: 10px;
+  align-self: center;
+}
+
+.form-button:hover {
+  background: rgb(15, 80, 15);
+  color: yellow;
+  cursor: pointer;
+}
+
+
+
+
+/* Todo List  */
+
+.todo-list-item {
+  margin-bottom: 20px;
+  margin-left: 10px;
+  display: block;
+  /* padding: 10px; */
+  background: rgba(236, 204, 122, 0.918);
+  border-radius: 5px;
+  box-shadow:
+    3px 3px 0 #000,
+    -1px 0px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.todo-list-header:hover {
+  cursor: pointer;
+  background: rgba(190, 164, 98, 0.918);
+}
+
+.todo-list-header {
+  padding: 10px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.list-item-title {
+  padding: 20px;
+  padding-left: 0px;
+}
+
+/* Todo Detail View  */
+
+.todo-detail-view {
+  padding: 10px;
+}
+
+.todo-detail-main {
+  /* background: rgba(245, 220, 139, 0.918); */
+  background: lightgoldenrodyellow;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.detail-body {
+  margin-bottom: 15px;
+}
+
+.todo-delete {
+  display: block;
+  font-family: Urbanist;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 5px;
+  background:rgb(202, 15, 15);
+  margin: 10px;
+  align-self: center;
+}
+
+.todo-delete:hover {
+  cursor: pointer;
+  color: yellow;
+  background: rgb(167, 11, 11);
+}
+
+
+/* Step List  */
+
+.step-list {
+  padding: 20px;
+}
+
+/* Step List Item  */
+
+.step-list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin-left: 40px;
+  border-bottom: 1px solid black;
+}
+
+.step-list-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+/* Step Form  */
+
+.step-form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
