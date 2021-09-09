@@ -57,14 +57,13 @@ export default class TodoForm extends React.Component {
 
     let newTodo = Object.assign({}, this.state);
     newTodo.id = this.uniqueId();
-    this.props.createTodo(newTodo);
-
+    this.props.createTodo(newTodo).then(
     this.setState({
       title: '',
       body: '',
       newTag: '',
       tags: []
-    })
+    }));
   }
 
   uniqueId() {

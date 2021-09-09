@@ -835,13 +835,12 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
       if (this.state.title == '') return;
       var newTodo = Object.assign({}, this.state);
       newTodo.id = this.uniqueId();
-      this.props.createTodo(newTodo);
-      this.setState({
+      this.props.createTodo(newTodo).then(this.setState({
         title: '',
         body: '',
         newTag: '',
         tags: []
-      });
+      }));
     }
   }, {
     key: "uniqueId",
