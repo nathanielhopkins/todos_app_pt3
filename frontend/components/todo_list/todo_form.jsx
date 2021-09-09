@@ -5,10 +5,10 @@ export default class TodoForm extends React.Component {
     super(props)
     
     this.state = {
-      title: '',
-      body: '',
+      title: "",
+      body: "",
       done: false,
-      newTag: '',
+      newTag: "",
       tags: []
     }
 
@@ -55,13 +55,12 @@ export default class TodoForm extends React.Component {
 
     if(this.state.title == '') return;
 
-    let newTodo = Object.assign({}, this.state);
-    newTodo.id = this.uniqueId();
-    this.props.createTodo(newTodo).then(
-    this.setState({
-      title: '',
-      body: '',
-      newTag: '',
+    let todo = Object.assign({}, this.state);
+    this.props.createTodo({todo}).then(
+    () => this.setState({
+      title: "",
+      body: "",
+      newTag: "",
       tags: []
     }));
   }
