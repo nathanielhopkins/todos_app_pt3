@@ -960,6 +960,11 @@ var TodoList = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(TodoList, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.requestTodos();
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,

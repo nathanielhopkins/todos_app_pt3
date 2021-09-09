@@ -5,6 +5,10 @@ import TodoForm from "../todo_list/todo_form";
 
 
 export default class TodoList extends React.Component {
+  componentDidMount(){
+    this.props.requestTodos();
+  }
+
   render() {
     const { todos, receiveTodo, removeTodo } = this.props;
     return(
