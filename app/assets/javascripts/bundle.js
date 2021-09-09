@@ -978,10 +978,12 @@ var TodoList = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           todos = _this$props.todos,
           receiveTodo = _this$props.receiveTodo,
-          removeTodo = _this$props.removeTodo;
+          removeTodo = _this$props.removeTodo,
+          createTodo = _this$props.createTodo;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "todo-list-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_todo_list_todo_form__WEBPACK_IMPORTED_MODULE_2__.default, {
+        createTodo: createTodo,
         receiveTodo: receiveTodo
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
         className: "todo-list"
@@ -1040,6 +1042,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     requestTodos: function requestTodos() {
       return dispatch((0,_actions_todo_actions__WEBPACK_IMPORTED_MODULE_3__.fetchTodos)());
+    },
+    createTodo: function createTodo(todo) {
+      return dispatch((0,_actions_todo_actions__WEBPACK_IMPORTED_MODULE_3__.createTodo)(todo));
     }
   };
 };
