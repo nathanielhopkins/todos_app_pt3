@@ -25,5 +25,5 @@ export const removeTodo = (todo) => {
 };
 
 export const fetchTodos = () => dispatch => (
-  APIUtil.fetchTodos().then(todos => disptach(receiveTodos(todos)))
+  APIUtil.fetchTodos().then(todos => dispatch(receiveTodos(todos)))
 );
