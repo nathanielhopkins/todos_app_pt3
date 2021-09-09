@@ -87,7 +87,7 @@ var removeTodo = function removeTodo(todo) {
 var fetchTodos = function fetchTodos() {
   return function (dispatch) {
     return _util_todo_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchTodos().then(function (todos) {
-      return disptach(receiveTodos(todos));
+      return dispatch(receiveTodos(todos));
     });
   };
 };
@@ -1024,6 +1024,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     removeTodo: function removeTodo(todo) {
       return dispatch((0,_actions_todo_actions__WEBPACK_IMPORTED_MODULE_3__.removeTodo)(todo));
+    },
+    requestTodos: function requestTodos() {
+      return dispatch((0,_actions_todo_actions__WEBPACK_IMPORTED_MODULE_3__.fetchTodos)());
     }
   };
 };
