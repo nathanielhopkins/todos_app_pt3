@@ -835,7 +835,7 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
       if (this.state.title == '') return;
       var newTodo = Object.assign({}, this.state);
       newTodo.id = this.uniqueId();
-      this.props.receiveTodo(newTodo);
+      this.props.createTodo(newTodo);
       this.setState({
         title: '',
         body: '',
