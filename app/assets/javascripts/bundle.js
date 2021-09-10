@@ -1500,7 +1500,7 @@ var createTodo = function createTodo(todo) {
 var updateTodo = function updateTodo(todo) {
   return $.ajax({
     method: 'PATCH',
-    url: "/api/todo/".concat(todo.id),
+    url: "/api/todos/".concat(todo.id),
     data: {
       todo: todo
     }
