@@ -1033,7 +1033,6 @@ var TodoList = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           todos = _this$props.todos,
           updateTodo = _this$props.updateTodo,
-          receiveTodo = _this$props.receiveTodo,
           removeTodo = _this$props.removeTodo,
           createTodo = _this$props.createTodo,
           errors = _this$props.errors;
@@ -1041,8 +1040,7 @@ var TodoList = /*#__PURE__*/function (_React$Component) {
         className: "todo-list-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_todo_list_todo_form__WEBPACK_IMPORTED_MODULE_2__.default, {
         errors: errors,
-        createTodo: createTodo,
-        receiveTodo: receiveTodo
+        createTodo: createTodo
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
         className: "todo-list"
       }, todos.map(function (todo) {
@@ -1050,7 +1048,6 @@ var TodoList = /*#__PURE__*/function (_React$Component) {
           key: todo.id,
           todo: todo,
           updateTodo: updateTodo,
-          receiveTodo: receiveTodo,
           removeTodo: removeTodo
         });
       })));
@@ -1093,9 +1090,6 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    receiveTodo: function receiveTodo(todo) {
-      return dispatch((0,_actions_todo_actions__WEBPACK_IMPORTED_MODULE_3__.receiveTodo)(todo));
-    },
     removeTodo: function removeTodo(todo) {
       return dispatch((0,_actions_todo_actions__WEBPACK_IMPORTED_MODULE_3__.removeTodo)(todo));
     },

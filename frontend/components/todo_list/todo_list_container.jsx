@@ -9,7 +9,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  receiveTodo: todo => dispatch(receiveTodo(todo)),
   removeTodo: todo => dispatch(removeTodo(todo)),
   requestTodos: () => dispatch(fetchTodos()),
   createTodo: todo => dispatch(createTodo(todo)),
