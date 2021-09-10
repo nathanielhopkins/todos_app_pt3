@@ -755,6 +755,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     removeTodo: function removeTodo(todo) {
@@ -762,6 +763,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     receiveSteps: function receiveSteps(todoId) {
       return dispatch((0,_actions_step_actions__WEBPACK_IMPORTED_MODULE_2__.receiveSteps)(todoId));
+    },
+    deleteTodo: function deleteTodo(todo) {
+      return dispatch((0,_actions_todo_actions__WEBPACK_IMPORTED_MODULE_1__.deleteTodo)(todo));
     }
   };
 };
