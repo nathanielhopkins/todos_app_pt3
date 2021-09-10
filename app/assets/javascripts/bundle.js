@@ -896,7 +896,9 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
         className: "todo-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
         className: "todo-form-header"
-      }, "New Todo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+      }, "New Todo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "form-errors"
+      }, this.props.errors), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         className: "form-label"
       }, "Title:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
@@ -1018,10 +1020,12 @@ var TodoList = /*#__PURE__*/function (_React$Component) {
           todos = _this$props.todos,
           receiveTodo = _this$props.receiveTodo,
           removeTodo = _this$props.removeTodo,
-          createTodo = _this$props.createTodo;
+          createTodo = _this$props.createTodo,
+          errors = _this$props.errors;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "todo-list-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_todo_list_todo_form__WEBPACK_IMPORTED_MODULE_2__.default, {
+        errors: errors,
         createTodo: createTodo,
         receiveTodo: receiveTodo
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
