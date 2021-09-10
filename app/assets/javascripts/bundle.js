@@ -1099,6 +1099,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     createTodo: function createTodo(todo) {
       return dispatch((0,_actions_todo_actions__WEBPACK_IMPORTED_MODULE_3__.createTodo)(todo));
+    },
+    updateTodo: function updateTodo(todo) {
+      return dispatch((0,_actions_todo_actions__WEBPACK_IMPORTED_MODULE_3__.updateTodo)(todo));
     }
   };
 };
