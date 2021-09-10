@@ -72,7 +72,7 @@ export default class TodoForm extends React.Component {
       <div className='todo-form'>
         <h2 className='todo-form-header'>New Todo</h2>
         <div className='form-errors'>
-          {this.props.errors.map(err => <p>{err}</p>)}
+          {this.props.errors.map(err => <p className="todo-form-error">{err}</p>)}
         </div>
         <label className='form-label'>Title:
         <input type='text' 

@@ -84,6 +84,19 @@ body {
   margin-bottom: 20px;
 }
 
+.todo-form-error {
+  display: block;
+  text-align: center;
+  margin: 10px 30px;
+  background: rgb(219, 77, 101);
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.todo-form-error:last-child {
+  margin-bottom: 20px;
+}
+
 .form-label {
   font-weight: bold;
   margin-bottom: 10px;
