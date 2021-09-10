@@ -776,6 +776,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -817,13 +819,9 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
       tags: []
     };
     _this.deleteTag = _this.deleteTag.bind(_assertThisInitialized(_this));
-    _this.receiveTodo = _this.props.receiveTodo;
-    _this.updateTitle = _this.updateTitle.bind(_assertThisInitialized(_this));
-    _this.updateBody = _this.updateBody.bind(_assertThisInitialized(_this));
     _this.updateTags = _this.updateTags.bind(_assertThisInitialized(_this));
-    _this.updateNewTag = _this.updateNewTag.bind(_assertThisInitialized(_this));
+    _this.updateValue = _this.updateValue.bind(_assertThisInitialized(_this));
     _this.submitForm = _this.submitForm.bind(_assertThisInitialized(_this));
-    _this.uniqueId = _this.uniqueId.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -839,25 +837,13 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "updateTitle",
-    value: function updateTitle(event) {
-      this.setState({
-        title: event.currentTarget.value
-      });
-    }
-  }, {
-    key: "updateBody",
-    value: function updateBody(event) {
-      this.setState({
-        body: event.currentTarget.value
-      });
-    }
-  }, {
-    key: "updateNewTag",
-    value: function updateNewTag(event) {
-      this.setState({
-        newTag: event.currentTarget.value
-      });
+    key: "updateValue",
+    value: function updateValue(type) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, type, e.currentTarget.value));
+      };
     }
   }, {
     key: "updateTags",
@@ -874,14 +860,14 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "submitForm",
     value: function submitForm(event) {
-      var _this2 = this;
+      var _this3 = this;
 
       event.preventDefault();
       var todo = Object.assign({}, this.state);
       this.props.createTodo({
         todo: todo
       }).then(function () {
-        return _this2.setState({
+        return _this3.setState({
           title: "",
           body: "",
           newTag: "",
@@ -890,14 +876,9 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "uniqueId",
-    value: function uniqueId() {
-      return new Date().getTime();
-    }
-  }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "todo-form"
@@ -918,7 +899,7 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
         id: "title",
         placeholder: "pet the dog",
         value: this.state.title,
-        onChange: this.updateTitle
+        onChange: this.updateValue('title')
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         className: "form-label"
       }, "Body:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
@@ -927,7 +908,7 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
         id: "body",
         placeholder: "because he's a good boy",
         value: this.state.body,
-        onChange: this.updateBody
+        onChange: this.updateValue('body')
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "tags"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
@@ -935,7 +916,7 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
         className: "form-text-input",
         placeholder: "#tag",
         value: this.state.newTag,
-        onChange: this.updateNewTag
+        onChange: this.updateValue('newTag')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "button",
         className: "form-button",
@@ -951,7 +932,7 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
           value: tag,
           key: idx,
           refkey: idx,
-          onClick: _this3.deleteTag
+          onClick: _this4.deleteTag
         });
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "submit",

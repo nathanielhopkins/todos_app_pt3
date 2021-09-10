@@ -13,13 +13,9 @@ export default class TodoForm extends React.Component {
     }
 
     this.deleteTag = this.deleteTag.bind(this);
-    this.receiveTodo = this.props.receiveTodo;
-    this.updateTitle = this.updateTitle.bind(this);
-    this.updateBody = this.updateBody.bind(this);
     this.updateTags = this.updateTags.bind(this);
-    this.updateNewTag = this.updateNewTag.bind(this);
+    this.updateValue = this.updateValue.bind(this);
     this.submitForm = this.submitForm.bind(this);
-    this.uniqueId = this.uniqueId.bind(this);
   }
 
   deleteTag(e) {
@@ -31,16 +27,8 @@ export default class TodoForm extends React.Component {
     this.setState({tags: newTags});
   }
 
-  updateTitle(event) {
-    this.setState({ title: event.currentTarget.value });
-  }
-
-  updateBody(event) {
-    this.setState({ body: event.currentTarget.value });
-  }
-
-  updateNewTag(event) {
-    this.setState({ newTag: event.currentTarget.value });
+  updateValue(type) {
+    return (e) => this.setState({ [type]: e.currentTarget.value });
   }
 
   updateTags(event) {
@@ -63,10 +51,6 @@ export default class TodoForm extends React.Component {
     }));
   }
 
-  uniqueId() {
-    return new Date().getTime();
-  }
-
   render() {
     return(
       <div className='todo-form'>
@@ -80,7 +64,7 @@ export default class TodoForm extends React.Component {
           id='title' 
           placeholder='pet the dog' 
           value={this.state.title}
-          onChange={this.updateTitle}
+          onChange={this.updateValue('title')}
           /></label>
 
         <label className='form-label' >Body:
@@ -89,7 +73,7 @@ export default class TodoForm extends React.Component {
           id='body' 
           placeholder="because he's a good boy" 
           value={this.state.body}
-          onChange={this.updateBody}
+          onChange={this.updateValue('body')}
           /></label>
 
         <div className='tags'>
@@ -97,7 +81,7 @@ export default class TodoForm extends React.Component {
           className='form-text-input'
           placeholder='#tag'
           value={this.state.newTag}
-          onChange={this.updateNewTag}
+          onChange={this.updateValue('newTag')}
           ></input>
 
         <input type='button' 
