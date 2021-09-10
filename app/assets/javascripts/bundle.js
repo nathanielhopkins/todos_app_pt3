@@ -1067,7 +1067,7 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state) {
   return {
     todos: (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_2__.allTodos)(state),
-    state: state
+    errors: state.errors
   };
 };
 
