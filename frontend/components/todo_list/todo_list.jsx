@@ -11,7 +11,7 @@ export default class TodoList extends React.Component {
   }
 
   render() {
-    const { todos, updateTodo, removeTodo, createTodo, errors } = this.props;
+    const { todos, updateTodo, createTodo, errors } = this.props;
     return(
       <div className='todo-list-container'>
         <TodoForm errors={errors} createTodo={createTodo} />
@@ -21,7 +21,6 @@ export default class TodoList extends React.Component {
             key={todo.id} 
             todo={todo} 
             updateTodo={updateTodo}
-            removeTodo={removeTodo}
             />
             
             ))}

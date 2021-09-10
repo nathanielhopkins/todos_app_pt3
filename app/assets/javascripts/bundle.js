@@ -1023,7 +1023,6 @@ var TodoList = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           todos = _this$props.todos,
           updateTodo = _this$props.updateTodo,
-          removeTodo = _this$props.removeTodo,
           createTodo = _this$props.createTodo,
           errors = _this$props.errors;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1037,8 +1036,7 @@ var TodoList = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_todo_list_todo_list_item__WEBPACK_IMPORTED_MODULE_1__.default, {
           key: todo.id,
           todo: todo,
-          updateTodo: updateTodo,
-          removeTodo: removeTodo
+          updateTodo: updateTodo
         });
       })));
     }
@@ -1080,9 +1078,6 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    removeTodo: function removeTodo(todo) {
-      return dispatch((0,_actions_todo_actions__WEBPACK_IMPORTED_MODULE_3__.removeTodo)(todo));
-    },
     requestTodos: function requestTodos() {
       return dispatch((0,_actions_todo_actions__WEBPACK_IMPORTED_MODULE_3__.fetchTodos)());
     },
