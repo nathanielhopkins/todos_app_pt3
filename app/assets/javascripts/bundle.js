@@ -1457,7 +1457,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "fetchTodos": () => (/* binding */ fetchTodos),
 /* harmony export */   "createTodo": () => (/* binding */ createTodo),
-/* harmony export */   "updateTodo": () => (/* binding */ updateTodo)
+/* harmony export */   "updateTodo": () => (/* binding */ updateTodo),
+/* harmony export */   "deleteTodo": () => (/* binding */ deleteTodo)
 /* harmony export */ });
 var fetchTodos = function fetchTodos() {
   return $.ajax({
@@ -1479,6 +1480,12 @@ var updateTodo = function updateTodo(todo) {
     data: {
       todo: todo
     }
+  });
+};
+var deleteTodo = function deleteTodo(todo) {
+  return $.ajax({
+    method: 'DELETE',
+    url: "/api/todos/".concat(todo.id)
   });
 };
 
