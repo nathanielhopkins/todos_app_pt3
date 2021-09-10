@@ -42,3 +42,8 @@ export const updateTodo = todo => dispatch => (
   APIUtil.updateTodo(todo)
     .then(todo => dispatch(receiveTodo(todo)))
 )
+
+export const deleteTodo = todo => dispatch => (
+  APIUtil.deleteTodo(todo)
+    .then(todo => dispatch(removeTodo(todo)))
+)

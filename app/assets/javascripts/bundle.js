@@ -91,7 +91,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "removeTodo": () => (/* binding */ removeTodo),
 /* harmony export */   "fetchTodos": () => (/* binding */ fetchTodos),
 /* harmony export */   "createTodo": () => (/* binding */ createTodo),
-/* harmony export */   "updateTodo": () => (/* binding */ updateTodo)
+/* harmony export */   "updateTodo": () => (/* binding */ updateTodo),
+/* harmony export */   "deleteTodo": () => (/* binding */ deleteTodo)
 /* harmony export */ });
 /* harmony import */ var _util_todo_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/todo_api_util */ "./frontend/util/todo_api_util.js");
 /* harmony import */ var _error_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./error_actions */ "./frontend/actions/error_actions.js");
@@ -139,6 +140,13 @@ var updateTodo = function updateTodo(todo) {
   return function (dispatch) {
     return _util_todo_api_util__WEBPACK_IMPORTED_MODULE_0__.updateTodo(todo).then(function (todo) {
       return dispatch(receiveTodo(todo));
+    });
+  };
+};
+var deleteTodo = function deleteTodo(todo) {
+  return function (dispatch) {
+    return _util_todo_api_util__WEBPACK_IMPORTED_MODULE_0__.deleteTodo(todo).then(function (todo) {
+      return dispatch(removeTodo(todo));
     });
   };
 };
