@@ -5,7 +5,6 @@ import TodoDetailView from './todo_detail_view';
 import { deleteTodo } from "../../actions/todo_actions";
 
 const mapDispatchToProps = dispatch => ({
-  removeTodo: todo => dispatch(removeTodo(todo)),
   receiveSteps: todoId => dispatch(receiveSteps(todoId)),
   deleteTodo: todo => dispatch(deleteTodo(todo))
 });

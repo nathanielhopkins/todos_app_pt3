@@ -693,7 +693,7 @@ var TodoDetailView = /*#__PURE__*/function (_React$Component) {
     key: "handleDelete",
     value: function handleDelete(e) {
       e.preventDefault();
-      this.props.removeTodo(this.props.todo);
+      this.props.deleteTodo(this.props.todo);
     }
   }, {
     key: "render",
@@ -758,9 +758,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    removeTodo: function removeTodo(todo) {
-      return dispatch((0,_actions_todo_actions__WEBPACK_IMPORTED_MODULE_1__.removeTodo)(todo));
-    },
     receiveSteps: function receiveSteps(todoId) {
       return dispatch((0,_actions_step_actions__WEBPACK_IMPORTED_MODULE_2__.receiveSteps)(todoId));
     },
