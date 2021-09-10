@@ -16,7 +16,7 @@ export default class TodoListItem extends React.Component {
 
     let toggled = Object.assign({}, this.props.todo);
     toggled.done = !toggled.done;
-    this.props.receiveTodo(toggled);
+    this.props.updateTodo(toggled);
   }
   
   toggleView(e) {
