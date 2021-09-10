@@ -90,7 +90,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "receiveTodo": () => (/* binding */ receiveTodo),
 /* harmony export */   "removeTodo": () => (/* binding */ removeTodo),
 /* harmony export */   "fetchTodos": () => (/* binding */ fetchTodos),
-/* harmony export */   "createTodo": () => (/* binding */ createTodo)
+/* harmony export */   "createTodo": () => (/* binding */ createTodo),
+/* harmony export */   "updateTodo": () => (/* binding */ updateTodo)
 /* harmony export */ });
 /* harmony import */ var _util_todo_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/todo_api_util */ "./frontend/util/todo_api_util.js");
 /* harmony import */ var _error_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./error_actions */ "./frontend/actions/error_actions.js");
@@ -131,6 +132,13 @@ var createTodo = function createTodo(todo) {
       dispatch((0,_error_actions__WEBPACK_IMPORTED_MODULE_1__.clearErrors)());
     }, function (err) {
       return dispatch((0,_error_actions__WEBPACK_IMPORTED_MODULE_1__.receiveErrors)(err.responseJSON));
+    });
+  };
+};
+var updateTodo = function updateTodo(todo) {
+  return function (dispatch) {
+    return _util_todo_api_util__WEBPACK_IMPORTED_MODULE_0__.updateTodo(todo).then(function (todo) {
+      return dispatch(receiveTodo(todo));
     });
   };
 };
