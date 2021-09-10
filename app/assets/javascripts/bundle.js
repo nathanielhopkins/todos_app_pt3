@@ -93,9 +93,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "createTodo": () => (/* binding */ createTodo)
 /* harmony export */ });
 /* harmony import */ var _util_todo_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/todo_api_util */ "./frontend/util/todo_api_util.js");
+/* harmony import */ var _error_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./error_actions */ "./frontend/actions/error_actions.js");
 var RECEIVE_TODOS = "RECEIVE_TODOS";
 var RECEIVE_TODO = "RECEIVE_TODO";
 var REMOVE_TODO = "REMOVE_TODO";
+
 
 var receiveTodos = function receiveTodos(todos) {
   return {
@@ -125,7 +127,10 @@ var fetchTodos = function fetchTodos() {
 var createTodo = function createTodo(todo) {
   return function (dispatch) {
     return _util_todo_api_util__WEBPACK_IMPORTED_MODULE_0__.createTodo(todo).then(function (todo) {
-      return dispatch(receiveTodo(todo));
+      dispatch(receiveTodo(todo));
+      dispatch((0,_error_actions__WEBPACK_IMPORTED_MODULE_1__.clearErrors)());
+    }, function (err) {
+      return dispatch((0,_error_actions__WEBPACK_IMPORTED_MODULE_1__.receiveErrors)(err.responseJSON));
     });
   };
 };
