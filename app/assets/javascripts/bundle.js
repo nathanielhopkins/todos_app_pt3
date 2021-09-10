@@ -1465,7 +1465,8 @@ var configureStore = function configureStore() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "fetchTodos": () => (/* binding */ fetchTodos),
-/* harmony export */   "createTodo": () => (/* binding */ createTodo)
+/* harmony export */   "createTodo": () => (/* binding */ createTodo),
+/* harmony export */   "updateTodo": () => (/* binding */ updateTodo)
 /* harmony export */ });
 var fetchTodos = function fetchTodos() {
   return $.ajax({
@@ -1478,6 +1479,15 @@ var createTodo = function createTodo(todo) {
     method: 'POST',
     url: '/api/todos',
     data: todo
+  });
+};
+var updateTodo = function updateTodo(todo) {
+  return $.ajax({
+    method: 'PATCH',
+    url: "/api/todo/".concat(todo.id),
+    data: {
+      todo: todo
+    }
   });
 };
 
