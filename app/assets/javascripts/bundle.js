@@ -869,7 +869,6 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       event.preventDefault();
-      if (this.state.title == '') return;
       var todo = Object.assign({}, this.state);
       this.props.createTodo({
         todo: todo
@@ -898,7 +897,9 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
         className: "todo-form-header"
       }, "New Todo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "form-errors"
-      }, this.props.errors), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+      }, this.props.errors.map(function (err) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, err);
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         className: "form-label"
       }, "Title:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",

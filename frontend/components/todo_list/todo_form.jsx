@@ -53,8 +53,6 @@ export default class TodoForm extends React.Component {
   submitForm(event) {
     event.preventDefault();
 
-    if(this.state.title == '') return;
-
     let todo = Object.assign({}, this.state);
     this.props.createTodo({todo}).then(
     () => this.setState({
@@ -73,6 +71,9 @@ export default class TodoForm extends React.Component {
     return(
       <div className='todo-form'>
         <h2 className='todo-form-header'>New Todo</h2>
+        <div className='form-errors'>
+          {this.props.errors.map(err => <p>{err}</p>)}
+        </div>
         <label className='form-label'>Title:
         <input type='text' 
           className='form-text-input'
