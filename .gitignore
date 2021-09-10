@@ -25,4 +25,4 @@ yarn-debug.log*
 !/storage/.keep
 /public/uploads
 
-/node_modules
+/node_modules/*
