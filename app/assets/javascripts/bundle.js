@@ -1,11 +1,4 @@
 /******/ (() => { // webpackBootstrap
-<<<<<<< HEAD
-/******/ 	"use strict";
-/******/ 	
-/******/ 	
-/******/ })()
-;
-=======
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./frontend/actions/error_actions.js":
@@ -35043,4 +35036,3 @@ document.addEventListener("DOMContentLoaded", function () {
 /******/ })()
 ;
 //# sourceMappingURL=bundle.js.map
->>>>>>> phase2
