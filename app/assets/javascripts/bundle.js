@@ -13,7 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_ERRORS": () => (/* binding */ RECEIVE_ERRORS),
 /* harmony export */   "CLEAR_ERRORS": () => (/* binding */ CLEAR_ERRORS),
 /* harmony export */   "receiveErrors": () => (/* binding */ receiveErrors),
-/* harmony export */   "clearErros": () => (/* binding */ clearErros)
+/* harmony export */   "clearErrors": () => (/* binding */ clearErrors)
 /* harmony export */ });
 var RECEIVE_ERRORS = "RECEIVE_ERRORS";
 var CLEAR_ERRORS = "CLEAR_ERRORS";
@@ -23,7 +23,7 @@ var receiveErrors = function receiveErrors(errors) {
     errors: errors
   };
 };
-var clearErros = function clearErros() {
+var clearErrors = function clearErrors() {
   return {
     type: CLEAR_ERRORS
   };
@@ -905,8 +905,9 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
         className: "todo-form-header"
       }, "New Todo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "form-errors"
-      }, this.props.errors.map(function (err) {
+      }, this.props.errors.map(function (err, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+          key: idx,
           className: "todo-form-error"
         }, err);
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
