@@ -1177,7 +1177,7 @@ var TodoListItem = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       var toggled = Object.assign({}, this.props.todo);
       toggled.done = !toggled.done;
-      this.props.receiveTodo(toggled);
+      this.props.updateTodo(toggled);
     }
   }, {
     key: "toggleView",
