@@ -1,6 +1,36 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./frontend/actions/error_actions.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/error_actions.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_ERRORS": () => (/* binding */ RECEIVE_ERRORS),
+/* harmony export */   "CLEAR_ERRORS": () => (/* binding */ CLEAR_ERRORS),
+/* harmony export */   "receiveErrors": () => (/* binding */ receiveErrors),
+/* harmony export */   "clearErros": () => (/* binding */ clearErros)
+/* harmony export */ });
+var RECEIVE_ERRORS = "RECEIVE_ERRORS";
+var CLEAR_ERRORS = "CLEAR_ERRORS";
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_ERRORS,
+    errors: errors
+  };
+};
+var clearErros = function clearErros() {
+  return {
+    type: CLEAR_ERRORS
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/step_actions.js":
 /*!******************************************!*\
   !*** ./frontend/actions/step_actions.js ***!
@@ -1196,6 +1226,41 @@ var thunkMiddleware = function thunkMiddleware(_ref) {
 
 /***/ }),
 
+/***/ "./frontend/reducers/error_reducer.js":
+/*!********************************************!*\
+  !*** ./frontend/reducers/error_reducer.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_error_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/error_actions */ "./frontend/actions/error_actions.js");
+
+
+var errorReducer = function errorReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_error_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ERRORS:
+      return action.errors;
+
+    case _actions_error_actions__WEBPACK_IMPORTED_MODULE_0__.CLEAR_ERRORS:
+      return [];
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (errorReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/root_reducer.js":
 /*!*******************************************!*\
   !*** ./frontend/reducers/root_reducer.js ***!
@@ -1207,15 +1272,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "rootReducer": () => (/* binding */ rootReducer)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _todos_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todos_reducer */ "./frontend/reducers/todos_reducer.js");
 /* harmony import */ var _step_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./step_reducer */ "./frontend/reducers/step_reducer.js");
+/* harmony import */ var _error_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./error_reducer */ "./frontend/reducers/error_reducer.js");
 
 
 
-var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+
+var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
   todos: _todos_reducer__WEBPACK_IMPORTED_MODULE_0__.default,
-  steps: _step_reducer__WEBPACK_IMPORTED_MODULE_1__.default
+  steps: _step_reducer__WEBPACK_IMPORTED_MODULE_1__.default,
+  errors: _error_reducer__WEBPACK_IMPORTED_MODULE_2__.default
 });
 
 /***/ }),
