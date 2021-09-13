@@ -449,7 +449,7 @@ var StepList = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           steps = _this$props.steps,
           todoId = _this$props.todoId,
-          receiveStep = _this$props.receiveStep;
+          createStep = _this$props.createStep;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "step-list-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -460,7 +460,7 @@ var StepList = /*#__PURE__*/function (_React$Component) {
           step: step
         });
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_step_form__WEBPACK_IMPORTED_MODULE_1__.default, {
-        receiveStep: receiveStep,
+        createStep: createStep,
         todoId: todoId
       }));
     }
