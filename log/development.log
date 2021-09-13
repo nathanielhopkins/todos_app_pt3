@@ -2462,3 +2462,19 @@ Unpermitted parameter: :newTag
 Completed 422 Unprocessable Entity in 10ms (Views: 0.2ms | ActiveRecord: 2.1ms)
 
 
+Started GET "/" for ::1 at 2021-09-10 16:26:39 -0700
+  [1m[35m (3.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/natehopkins/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 2781ms (Views: 2780.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/todos" for ::1 at 2021-09-10 16:26:42 -0700
+Processing by Api::TodosController#index as JSON
+  [1m[36mTodo Load (1.1ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:8
+Completed 200 OK in 52ms (Views: 25.5ms | ActiveRecord: 16.3ms)
+
+
