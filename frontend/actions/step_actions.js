@@ -28,3 +28,8 @@ export const fetchSteps = (todoId) => dispatch => (
   StepApiUtil.fetchSteps(todoId)
     .then(steps => dispatch(receiveSteps(steps)))
 );
+
+export const createStep = (todoId, step) => dispatch => (
+  StepApiUtil.createStep(todoId, step)
+    .then(step => dispatch(receiveStep(step)))
+);
