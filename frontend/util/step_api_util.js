@@ -4,3 +4,11 @@ export const fetchSteps = (todoId) => {
     url: `/api/todos/${todoId}/steps`
   })
 };
+
+export const createStep = (todoId, step) => {
+  $.ajax({
+    method: 'POST',
+    url: `/api/todos/${todoId}/steps`,
+    data: { step }
+  })
+};

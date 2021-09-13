@@ -1459,12 +1459,22 @@ var configureStore = function configureStore() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "fetchSteps": () => (/* binding */ fetchSteps)
+/* harmony export */   "fetchSteps": () => (/* binding */ fetchSteps),
+/* harmony export */   "createStep": () => (/* binding */ createStep)
 /* harmony export */ });
 var fetchSteps = function fetchSteps(todoId) {
   $.ajax({
     method: 'GET',
     url: "/api/todos/".concat(todoId, "/steps")
+  });
+};
+var createStep = function createStep(todoId, step) {
+  $.ajax({
+    method: 'POST',
+    url: "/api/todos/".concat(todoId, "/steps"),
+    data: {
+      step: step
+    }
   });
 };
 
