@@ -27,16 +27,15 @@ export default class StepForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    let newStep = Object.assign({}, this.state);
-    newStep.id = this.uniqueId();
-    this.props.receiveStep(newStep);
-
-    this.setState({
-      title: '',
-      body: '',
-      todoId: this.props.todoId,
-      done: false
-    });
+    let step = Object.assign({}, this.state);
+    step.id = this.uniqueId();
+    this.props.createStep(this.props.todoId, step) 
+      .then(this.setState({
+          title: '',
+          body: '',
+          todoId: this.props.todoId,
+          done: false
+      }));
   }
 
   render() {

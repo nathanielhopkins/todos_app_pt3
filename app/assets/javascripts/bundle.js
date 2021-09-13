@@ -343,15 +343,14 @@ var StepForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      var newStep = Object.assign({}, this.state);
-      newStep.id = this.uniqueId();
-      this.props.receiveStep(newStep);
-      this.setState({
+      var step = Object.assign({}, this.state);
+      step.id = this.uniqueId();
+      this.props.createStep(this.props.todoId, step).then(this.setState({
         title: '',
         body: '',
         todoId: this.props.todoId,
         done: false
-      });
+      }));
     }
   }, {
     key: "render",
