@@ -45,11 +45,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "REMOVE_STEP": () => (/* binding */ REMOVE_STEP),
 /* harmony export */   "receiveStep": () => (/* binding */ receiveStep),
 /* harmony export */   "receiveSteps": () => (/* binding */ receiveSteps),
-/* harmony export */   "removeStep": () => (/* binding */ removeStep)
+/* harmony export */   "removeStep": () => (/* binding */ removeStep),
+/* harmony export */   "fetchSteps": () => (/* binding */ fetchSteps)
 /* harmony export */ });
+/* harmony import */ var _util_step_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/step_api_util */ "./frontend/util/step_api_util.js");
 var RECEIVE_STEPS = "RECIEVE_STEPS";
 var RECEIVE_STEP = "RECEIVE_STEP";
 var REMOVE_STEP = "REMOVE_STEP";
+
 var receiveStep = function receiveStep(step) {
   return {
     type: RECEIVE_STEP,
@@ -68,9 +71,13 @@ var removeStep = function removeStep(stepId) {
     stepId: stepId
   };
 };
-window.receiveSteps = receiveSteps;
-window.receiveStep = receiveStep;
-window.removeStep = removeStep;
+var fetchSteps = function fetchSteps(todoId) {
+  return function (dispatch) {
+    return _util_step_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchSteps(todoId).then(function (steps) {
+      return dispatch(receiveSteps(steps));
+    });
+  };
+};
 
 /***/ }),
 
@@ -1446,6 +1453,26 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/step_api_util.js":
+/*!****************************************!*\
+  !*** ./frontend/util/step_api_util.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchSteps": () => (/* binding */ fetchSteps)
+/* harmony export */ });
+var fetchSteps = function fetchSteps(todoId) {
+  $.ajax({
+    method: 'GET',
+    url: "/api/todos/".concat(todoId, "/steps")
+  });
+};
 
 /***/ }),
 
