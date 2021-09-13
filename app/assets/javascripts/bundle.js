@@ -716,14 +716,7 @@ var TodoDetailView = /*#__PURE__*/function (_React$Component) {
         className: "detail-body"
       }, todo.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "tag-buttons"
-      }, todo.tags.map(function (tag, idx) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-          type: "button",
-          className: "tag-button",
-          value: tag,
-          key: idx
-        });
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_step_list_step_list_container__WEBPACK_IMPORTED_MODULE_1__.default, {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_step_list_step_list_container__WEBPACK_IMPORTED_MODULE_1__.default, {
         todoId: todo.id
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "todo-delete",
