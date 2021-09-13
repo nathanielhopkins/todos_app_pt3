@@ -762,10 +762,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+var mapDispatchToProps = function mapDispatchToProps(dispatch, _ref) {
+  var todo = _ref.todo;
   return {
-    receiveSteps: function receiveSteps(todoId) {
-      return dispatch((0,_actions_step_actions__WEBPACK_IMPORTED_MODULE_1__.receiveSteps)(todoId));
+    fetchSteps: function fetchSteps() {
+      return dispatch((0,_actions_step_actions__WEBPACK_IMPORTED_MODULE_1__.fetchSteps)(todo.id));
     },
     deleteTodo: function deleteTodo(todo) {
       return dispatch((0,_actions_todo_actions__WEBPACK_IMPORTED_MODULE_3__.deleteTodo)(todo));
