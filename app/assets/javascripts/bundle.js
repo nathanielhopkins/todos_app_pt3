@@ -46,7 +46,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "receiveStep": () => (/* binding */ receiveStep),
 /* harmony export */   "receiveSteps": () => (/* binding */ receiveSteps),
 /* harmony export */   "removeStep": () => (/* binding */ removeStep),
-/* harmony export */   "fetchSteps": () => (/* binding */ fetchSteps)
+/* harmony export */   "fetchSteps": () => (/* binding */ fetchSteps),
+/* harmony export */   "createStep": () => (/* binding */ createStep)
 /* harmony export */ });
 /* harmony import */ var _util_step_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/step_api_util */ "./frontend/util/step_api_util.js");
 var RECEIVE_STEPS = "RECIEVE_STEPS";
@@ -75,6 +76,13 @@ var fetchSteps = function fetchSteps(todoId) {
   return function (dispatch) {
     return _util_step_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchSteps(todoId).then(function (steps) {
       return dispatch(receiveSteps(steps));
+    });
+  };
+};
+var createStep = function createStep(todoId, step) {
+  return function (dispatch) {
+    return _util_step_api_util__WEBPACK_IMPORTED_MODULE_0__.createStep(todoId, step).then(function (step) {
+      return dispatch(receiveStep(step));
     });
   };
 };
@@ -494,10 +502,10 @@ var mapStateToProps = function mapStateToProps(state, _ref) {
   };
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   return {
-    receiveStep: function receiveStep(step) {
-      return dispatch((0,_actions_step_actions__WEBPACK_IMPORTED_MODULE_3__.receiveStep)(step));
+    createStep: function createStep() {
+      return dispatch(_actions_step_actions__WEBPACK_IMPORTED_MODULE_3__.createStep.apply(void 0, arguments));
     }
   };
 };
