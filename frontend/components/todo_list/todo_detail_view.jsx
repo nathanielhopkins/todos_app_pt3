@@ -7,6 +7,10 @@ export default class TodoDetailView extends React.Component {
     this.props.deleteTodo(this.props.todo);
   }
 
+  componentDidMount() {
+    this.props.fetchSteps();
+  }
+
   render() {
     const { todo } = this.props;
     return(

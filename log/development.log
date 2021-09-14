@@ -2908,3 +2908,116 @@ Processing by Api::StepsController#create as JSON
 Completed 422 Unprocessable Entity in 20ms (Views: 1.0ms | ActiveRecord: 4.0ms)
 
 
+Started PATCH "/api/todos/2" for ::1 at 2021-09-14 15:25:20 -0700
+Processing by Api::TodosController#update as JSON
+  Parameters: {"todo"=>{"id"=>"2", "title"=>"walk the dog", "body"=>"take him for a good long walk, and dont forget the treats", "done"=>"false", "created_at"=>"2021-09-08T23:31:01.246Z", "updated_at"=>"2021-09-10T19:13:05.744Z"}, "id"=>"2"}
+  [1m[36mTodo Load (0.8ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/todos_controller.rb:21
+Unpermitted parameters: :id, :created_at, :updated_at
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/todos_controller.rb:22
+  [1m[36mTodo Update (2.4ms)[0m  [1m[33mUPDATE "todos" SET "done" = $1, "updated_at" = $2 WHERE "todos"."id" = $3[0m  [["done", false], ["updated_at", "2021-09-14 22:25:20.160929"], ["id", 2]]
+  ↳ app/controllers/api/todos_controller.rb:22
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/todos_controller.rb:22
+Completed 200 OK in 17ms (Views: 0.6ms | ActiveRecord: 7.0ms)
+
+
+Started PATCH "/api/todos/3" for ::1 at 2021-09-14 15:25:24 -0700
+Processing by Api::TodosController#update as JSON
+  Parameters: {"todo"=>{"id"=>"3", "title"=>"go to the store", "body"=>"pick up things for dinner", "done"=>"true", "created_at"=>"2021-09-08T23:31:01.254Z", "updated_at"=>"2021-09-08T23:31:01.254Z"}, "id"=>"3"}
+  [1m[36mTodo Load (1.7ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/todos_controller.rb:21
+Unpermitted parameters: :id, :created_at, :updated_at
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/todos_controller.rb:22
+  [1m[36mTodo Update (1.1ms)[0m  [1m[33mUPDATE "todos" SET "done" = $1, "updated_at" = $2 WHERE "todos"."id" = $3[0m  [["done", true], ["updated_at", "2021-09-14 22:25:24.235748"], ["id", 3]]
+  ↳ app/controllers/api/todos_controller.rb:22
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/todos_controller.rb:22
+Completed 200 OK in 13ms (Views: 1.2ms | ActiveRecord: 5.6ms)
+
+
+Started PATCH "/api/todos/3" for ::1 at 2021-09-14 15:25:24 -0700
+Processing by Api::TodosController#update as JSON
+  Parameters: {"todo"=>{"id"=>"3", "title"=>"go to the store", "body"=>"pick up things for dinner", "done"=>"false", "created_at"=>"2021-09-08T23:31:01.254Z", "updated_at"=>"2021-09-14T22:25:24.235Z"}, "id"=>"3"}
+  [1m[36mTodo Load (1.2ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/todos_controller.rb:21
+Unpermitted parameters: :id, :created_at, :updated_at
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/todos_controller.rb:22
+  [1m[36mTodo Update (1.6ms)[0m  [1m[33mUPDATE "todos" SET "done" = $1, "updated_at" = $2 WHERE "todos"."id" = $3[0m  [["done", false], ["updated_at", "2021-09-14 22:25:24.755208"], ["id", 3]]
+  ↳ app/controllers/api/todos_controller.rb:22
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/todos_controller.rb:22
+Completed 200 OK in 11ms (Views: 0.6ms | ActiveRecord: 6.0ms)
+
+
+Started PATCH "/api/todos/4" for ::1 at 2021-09-14 15:25:25 -0700
+Processing by Api::TodosController#update as JSON
+  Parameters: {"todo"=>{"id"=>"4", "title"=>"do laundry", "body"=>"it's piling up", "done"=>"true", "created_at"=>"2021-09-09T23:15:21.810Z", "updated_at"=>"2021-09-09T23:15:21.810Z"}, "id"=>"4"}
+  [1m[36mTodo Load (1.1ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/todos_controller.rb:21
+Unpermitted parameters: :id, :created_at, :updated_at
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/todos_controller.rb:22
+  [1m[36mTodo Update (0.4ms)[0m  [1m[33mUPDATE "todos" SET "done" = $1, "updated_at" = $2 WHERE "todos"."id" = $3[0m  [["done", true], ["updated_at", "2021-09-14 22:25:25.768187"], ["id", 4]]
+  ↳ app/controllers/api/todos_controller.rb:22
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/todos_controller.rb:22
+Completed 200 OK in 10ms (Views: 0.4ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/" for ::1 at 2021-09-14 15:25:27 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 58ms (Views: 57.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/todos" for ::1 at 2021-09-14 15:25:27 -0700
+Processing by Api::TodosController#index as JSON
+  [1m[36mTodo Load (3.0ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:8
+Completed 200 OK in 6ms (Views: 2.7ms | ActiveRecord: 3.0ms)
+
+
+  [1m[36mStep Load (0.9ms)[0m  [1m[34mSELECT "steps".* FROM "steps"[0m
+Started GET "/" for ::1 at 2021-09-14 15:38:09 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 533ms (Views: 532.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/todos" for ::1 at 2021-09-14 15:38:10 -0700
+Processing by Api::TodosController#index as JSON
+  [1m[36mTodo Load (1.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:8
+Completed 200 OK in 5ms (Views: 3.5ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/" for ::1 at 2021-09-14 15:38:31 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 1675ms (Views: 1674.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/todos" for ::1 at 2021-09-14 15:38:33 -0700
+Processing by Api::TodosController#index as JSON
+  [1m[36mTodo Load (0.7ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:8
+Completed 200 OK in 4ms (Views: 2.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/todos/2/steps" for ::1 at 2021-09-14 15:38:34 -0700
+Processing by Api::StepsController#index as JSON
+  Parameters: {"todo_id"=>"2"}
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms)
+
+
+
+ActiveRecord::RecordNotFound - Couldn't find Todo without an ID:
+  app/controllers/api/steps_controller.rb:3:in `index'
+

@@ -722,6 +722,11 @@ var TodoDetailView = /*#__PURE__*/function (_React$Component) {
       this.props.deleteTodo(this.props.todo);
     }
   }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchSteps();
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this = this;
