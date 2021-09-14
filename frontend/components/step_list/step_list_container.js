@@ -9,7 +9,7 @@ const mapStateToProps = (state, { todoId }) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  createStep: (...args) => dispatch(createStep(...args))
+  createStep: (todoId, step) => dispatch(createStep(todoId, step))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StepList);

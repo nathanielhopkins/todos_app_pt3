@@ -500,8 +500,8 @@ var mapStateToProps = function mapStateToProps(state, _ref) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   return {
-    createStep: function createStep() {
-      return dispatch(_actions_step_actions__WEBPACK_IMPORTED_MODULE_3__.createStep.apply(void 0, arguments));
+    createStep: function createStep(todoId, step) {
+      return dispatch((0,_actions_step_actions__WEBPACK_IMPORTED_MODULE_3__.createStep)(todoId, step));
     }
   };
 };
