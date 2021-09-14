@@ -6,7 +6,6 @@ class Api::StepsController < ApplicationController
 
   def create
     @step = Step.new(step_params)
-    @step.todoId = params[:todo_id]
     
     if @step.save 
       render json: @step
