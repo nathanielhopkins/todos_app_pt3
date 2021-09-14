@@ -5,8 +5,8 @@ export default class StepForm extends React.Component {
     super(props)
 
     this.state = {
-      title: '',
-      body: '',
+      title: "",
+      body: "",
       todoId: this.props.todoId,
       done: false
     };
@@ -28,13 +28,10 @@ export default class StepForm extends React.Component {
     e.preventDefault();
 
     let step = Object.assign({}, this.state);
-    step.id = this.uniqueId();
-    this.props.createStep(this.props.todoId, step) 
-      .then(this.setState({
-          title: '',
-          body: '',
-          todoId: this.props.todoId,
-          done: false
+    this.props.createStep(this.props.todoId, step).then(
+      this.setState({
+          title: "",
+          body: "",
       }));
   }
 

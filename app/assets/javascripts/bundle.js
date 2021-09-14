@@ -314,8 +314,8 @@ var StepForm = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      title: '',
-      body: '',
+      title: "",
+      body: "",
       todoId: _this.props.todoId,
       done: false
     };
@@ -344,12 +344,9 @@ var StepForm = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       var step = Object.assign({}, this.state);
-      step.id = this.uniqueId();
       this.props.createStep(this.props.todoId, step).then(this.setState({
-        title: '',
-        body: '',
-        todoId: this.props.todoId,
-        done: false
+        title: "",
+        body: ""
       }));
     }
   }, {
