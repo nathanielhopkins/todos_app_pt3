@@ -2635,3 +2635,66 @@ Migrating to FixTypoInStepsTodoId (20210914180450)
   ↳ bin/rails:9
   [1m[36mTodo Load (0.8ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
   [1m[36mStep Load (4.7ms)[0m  [1m[34mSELECT "steps".* FROM "steps"[0m
+Started GET "/" for ::1 at 2021-09-14 11:50:57 -0700
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/natehopkins/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 2931ms (Views: 2930.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/todos" for ::1 at 2021-09-14 11:51:00 -0700
+Processing by Api::TodosController#index as JSON
+  [1m[36mTodo Load (1.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:8
+Completed 200 OK in 53ms (Views: 21.7ms | ActiveRecord: 18.1ms)
+
+
+Started POST "/api/todos/2/steps" for ::1 at 2021-09-14 11:51:08 -0700
+Processing by Api::StepsController#create as JSON
+  Parameters: {"step"=>{"title"=>"grab treats", "body"=>"need for training", "todoId"=>"2", "done"=>"false"}, "todo_id"=>"2"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/steps_controller.rb:10
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/steps_controller.rb:10
+Completed 500 Internal Server Error in 55ms (ActiveRecord: 12.5ms)
+
+
+
+NoMethodError - undefined method `todoID' for #<Step:0x00007faeaf16ae30>
+Did you mean?  todo
+               todoId
+               todoId=
+               todoId?
+               todo=:
+  app/controllers/api/steps_controller.rb:10:in `create'
+
+Started GET "/" for ::1 at 2021-09-14 11:59:24 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 61ms (Views: 61.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/todos" for ::1 at 2021-09-14 11:59:25 -0700
+Processing by Api::TodosController#index as JSON
+  [1m[36mTodo Load (1.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:8
+Completed 200 OK in 49ms (Views: 15.0ms | ActiveRecord: 24.4ms)
+
+
+Started POST "/api/todos/2/steps" for ::1 at 2021-09-14 11:59:38 -0700
+Processing by Api::StepsController#create as JSON
+  Parameters: {"step"=>{"title"=>"grab treats", "body"=>"need for training", "todoId"=>"2", "done"=>"false"}, "todo_id"=>"2"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/steps_controller.rb:10
+  [1m[36mTodo Load (0.3ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/steps_controller.rb:10
+  [1m[36mStep Create (3.4ms)[0m  [1m[32mINSERT INTO "steps" ("title", "body", "done", "created_at", "updated_at", "todoId") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "grab treats"], ["body", "need for training"], ["done", false], ["created_at", "2021-09-14 18:59:38.560997"], ["updated_at", "2021-09-14 18:59:38.560997"], ["todoId", 2]]
+  ↳ app/controllers/api/steps_controller.rb:10
+  [1m[35m (3.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/steps_controller.rb:10
+Completed 200 OK in 57ms (Views: 0.7ms | ActiveRecord: 18.7ms)
+
+
