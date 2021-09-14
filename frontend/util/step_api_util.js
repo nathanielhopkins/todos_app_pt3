@@ -1,12 +1,12 @@
 export const fetchSteps = (todoId) => {
-  $.ajax({
+  return $.ajax({
     method: 'GET',
     url: `/api/todos/${todoId}/steps`
   })
 };
 
 export const createStep = (todoId, step) => {
-  $.ajax({
+  return $.ajax({
     method: 'POST',
     url: `/api/todos/${todoId}/steps`,
     data: { step }

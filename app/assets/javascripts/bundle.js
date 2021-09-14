@@ -1467,13 +1467,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "createStep": () => (/* binding */ createStep)
 /* harmony export */ });
 var fetchSteps = function fetchSteps(todoId) {
-  $.ajax({
+  return $.ajax({
     method: 'GET',
     url: "/api/todos/".concat(todoId, "/steps")
   });
 };
 var createStep = function createStep(todoId, step) {
-  $.ajax({
+  return $.ajax({
     method: 'POST',
     url: "/api/todos/".concat(todoId, "/steps"),
     data: {
