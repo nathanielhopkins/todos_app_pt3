@@ -2,7 +2,7 @@ class Todo < ApplicationRecord
   has_many(
     :steps,
     class_name: "Step",
-    foreign_key: :todoID,
+    foreign_key: :todoId,
     primary_key: :id
   )
   validates :title, :body, presence: true

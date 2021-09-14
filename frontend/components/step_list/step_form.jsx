@@ -39,6 +39,9 @@ export default class StepForm extends React.Component {
     return(
       <div className='step-form'>
         <h4 className='step-form-header'>Add a New Step</h4>
+        <div className='form-errors'>
+          {this.props.errors.map((err, idx) => <p key={idx} className="todo-form-error">{err}</p>)}
+        </div>
         <label className='form-label' >Title:
           <input type='text' 
             className='form-text-input'

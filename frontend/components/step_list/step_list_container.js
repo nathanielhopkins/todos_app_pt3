@@ -5,6 +5,7 @@ import { createStep } from '../../actions/step_actions';
 
 const mapStateToProps = (state, { todoId }) => ({
   steps: stepsByTodoId(state, todoId),
+  errors: state.errors,
   todoId
 });
 

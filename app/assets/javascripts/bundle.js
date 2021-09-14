@@ -50,9 +50,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "createStep": () => (/* binding */ createStep)
 /* harmony export */ });
 /* harmony import */ var _util_step_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/step_api_util */ "./frontend/util/step_api_util.js");
+/* harmony import */ var _error_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./error_actions */ "./frontend/actions/error_actions.js");
 var RECEIVE_STEPS = "RECIEVE_STEPS";
 var RECEIVE_STEP = "RECEIVE_STEP";
 var REMOVE_STEP = "REMOVE_STEP";
+
 
 var receiveStep = function receiveStep(step) {
   return {
@@ -82,7 +84,10 @@ var fetchSteps = function fetchSteps(todoId) {
 var createStep = function createStep(todoId, step) {
   return function (dispatch) {
     return _util_step_api_util__WEBPACK_IMPORTED_MODULE_0__.createStep(todoId, step).then(function (step) {
-      return dispatch(receiveStep(step));
+      dispatch(receiveStep(step));
+      dispatch((0,_error_actions__WEBPACK_IMPORTED_MODULE_1__.clearErrors)());
+    }, function (err) {
+      return dispatch((0,_error_actions__WEBPACK_IMPORTED_MODULE_1__.receiveErrors)(err.responseJSON));
     });
   };
 };
@@ -356,7 +361,14 @@ var StepForm = /*#__PURE__*/function (_React$Component) {
         className: "step-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
         className: "step-form-header"
-      }, "Add a New Step"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+      }, "Add a New Step"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "form-errors"
+      }, this.props.errors.map(function (err, idx) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+          key: idx,
+          className: "todo-form-error"
+        }, err);
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         className: "form-label"
       }, "Title:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
@@ -445,7 +457,8 @@ var StepList = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           steps = _this$props.steps,
           todoId = _this$props.todoId,
-          createStep = _this$props.createStep;
+          createStep = _this$props.createStep,
+          errors = _this$props.errors;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "step-list-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -456,6 +469,7 @@ var StepList = /*#__PURE__*/function (_React$Component) {
           step: step
         });
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_step_form__WEBPACK_IMPORTED_MODULE_1__.default, {
+        errors: errors,
         createStep: createStep,
         todoId: todoId
       }));
@@ -494,6 +508,7 @@ var mapStateToProps = function mapStateToProps(state, _ref) {
   var todoId = _ref.todoId;
   return {
     steps: (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_2__.stepsByTodoId)(state, todoId),
+    errors: state.errors,
     todoId: todoId
   };
 };
