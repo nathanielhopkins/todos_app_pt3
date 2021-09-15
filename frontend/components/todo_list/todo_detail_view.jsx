@@ -22,7 +22,7 @@ export default class TodoDetailView extends React.Component {
               <input
                 type='button'
                 className='tag-button'
-                value={tag}
+                value={tag.name}
                 key={idx}
               ></input>
             )}

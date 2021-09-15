@@ -756,7 +756,7 @@ var TodoDetailView = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
           type: "button",
           className: "tag-button",
-          value: tag,
+          value: tag.name,
           key: idx
         });
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_step_list_step_list_container__WEBPACK_IMPORTED_MODULE_1__.default, {
