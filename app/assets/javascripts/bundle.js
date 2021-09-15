@@ -605,7 +605,7 @@ var StepListItem = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleDelete",
     value: function handleDelete(step) {
-      this.props.removeStep(step.id);
+      this.props.deleteStep(step);
     }
   }, {
     key: "render",

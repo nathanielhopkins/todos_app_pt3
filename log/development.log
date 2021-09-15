@@ -3697,3 +3697,150 @@ Processing by Api::StepsController#index as JSON
 Completed 200 OK in 6ms (Views: 3.0ms | ActiveRecord: 1.9ms)
 
 
+Started GET "/" for ::1 at 2021-09-15 11:46:46 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 707ms (Views: 704.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/todos" for ::1 at 2021-09-15 11:46:47 -0700
+Processing by Api::TodosController#index as JSON
+  [1m[36mTodo Load (2.6ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:8
+Completed 200 OK in 15ms (Views: 10.9ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/api/todos/2/steps" for ::1 at 2021-09-15 11:46:48 -0700
+Processing by Api::StepsController#index as JSON
+  Parameters: {"todo_id"=>"2"}
+  [1m[36mTodo Load (0.9ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/steps_controller.rb:3
+  [1m[36mStep Load (1.2ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."todoId" = $1[0m  [["todoId", 2]]
+  ↳ app/controllers/api/steps_controller.rb:4
+Completed 200 OK in 12ms (Views: 6.1ms | ActiveRecord: 3.0ms)
+
+
+Started DELETE "/api/steps/1" for ::1 at 2021-09-15 11:46:49 -0700
+Processing by Api::StepsController#destroy as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mStep Load (2.2ms)[0m  [1m[34mSELECT  "steps".* FROM "steps" WHERE "steps"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/steps_controller.rb:28
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/steps_controller.rb:29
+  [1m[36mStep Destroy (2.7ms)[0m  [1m[31mDELETE FROM "steps" WHERE "steps"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/api/steps_controller.rb:29
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/steps_controller.rb:29
+Completed 200 OK in 15ms (Views: 0.7ms | ActiveRecord: 7.5ms)
+
+
+Started GET "/" for ::1 at 2021-09-15 11:46:51 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 40ms (Views: 40.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/todos" for ::1 at 2021-09-15 11:46:51 -0700
+Processing by Api::TodosController#index as JSON
+  [1m[36mTodo Load (0.7ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:8
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/todos/2/steps" for ::1 at 2021-09-15 11:46:52 -0700
+Processing by Api::StepsController#index as JSON
+  Parameters: {"todo_id"=>"2"}
+  [1m[36mTodo Load (1.9ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/steps_controller.rb:3
+  [1m[36mStep Load (1.8ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."todoId" = $1[0m  [["todoId", 2]]
+  ↳ app/controllers/api/steps_controller.rb:4
+Completed 200 OK in 8ms (Views: 2.8ms | ActiveRecord: 3.7ms)
+
+
+Started POST "/api/todos/2/steps" for ::1 at 2021-09-15 11:47:02 -0700
+Processing by Api::StepsController#create as JSON
+  Parameters: {"step"=>{"title"=>"testing", "body"=>"testing testing testing", "todoId"=>"2", "done"=>"false"}, "todo_id"=>"2"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/steps_controller.rb:10
+  [1m[36mTodo Load (2.0ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/steps_controller.rb:10
+  [1m[36mStep Create (2.3ms)[0m  [1m[32mINSERT INTO "steps" ("title", "body", "done", "created_at", "updated_at", "todoId") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "testing"], ["body", "testing testing testing"], ["done", false], ["created_at", "2021-09-15 18:47:02.846884"], ["updated_at", "2021-09-15 18:47:02.846884"], ["todoId", 2]]
+  ↳ app/controllers/api/steps_controller.rb:10
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/steps_controller.rb:10
+Completed 200 OK in 15ms (Views: 0.4ms | ActiveRecord: 6.5ms)
+
+
+Started PATCH "/api/steps/3" for ::1 at 2021-09-15 11:47:04 -0700
+Processing by Api::StepsController#update as JSON
+  Parameters: {"step"=>{"id"=>"3", "title"=>"testing", "body"=>"testing testing testing", "done"=>"true", "created_at"=>"2021-09-15T18:47:02.846Z", "updated_at"=>"2021-09-15T18:47:02.846Z", "todoId"=>"2"}, "id"=>"3"}
+  [1m[36mStep Load (1.4ms)[0m  [1m[34mSELECT  "steps".* FROM "steps" WHERE "steps"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/steps_controller.rb:18
+Unpermitted parameters: :id, :created_at, :updated_at
+  [1m[35m (1.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/steps_controller.rb:20
+  [1m[36mTodo Load (1.7ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/steps_controller.rb:20
+  [1m[36mStep Update (3.4ms)[0m  [1m[33mUPDATE "steps" SET "done" = $1, "updated_at" = $2 WHERE "steps"."id" = $3[0m  [["done", true], ["updated_at", "2021-09-15 18:47:04.592264"], ["id", 3]]
+  ↳ app/controllers/api/steps_controller.rb:20
+  [1m[35m (3.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/steps_controller.rb:20
+Completed 200 OK in 22ms (Views: 0.4ms | ActiveRecord: 11.9ms)
+
+
+Started DELETE "/api/steps/3" for ::1 at 2021-09-15 11:47:05 -0700
+Processing by Api::StepsController#destroy as JSON
+  Parameters: {"id"=>"3"}
+  [1m[36mStep Load (1.6ms)[0m  [1m[34mSELECT  "steps".* FROM "steps" WHERE "steps"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/steps_controller.rb:28
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/steps_controller.rb:29
+  [1m[36mStep Destroy (2.5ms)[0m  [1m[31mDELETE FROM "steps" WHERE "steps"."id" = $1[0m  [["id", 3]]
+  ↳ app/controllers/api/steps_controller.rb:29
+  [1m[35m (3.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/steps_controller.rb:29
+Completed 200 OK in 14ms (Views: 0.9ms | ActiveRecord: 7.9ms)
+
+
+Started POST "/api/todos/2/steps" for ::1 at 2021-09-15 11:47:10 -0700
+Processing by Api::StepsController#create as JSON
+  Parameters: {"step"=>{"title"=>"aasdf", "body"=>"", "todoId"=>"2", "done"=>"false"}, "todo_id"=>"2"}
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/steps_controller.rb:10
+  [1m[36mTodo Load (1.6ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/steps_controller.rb:10
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/steps_controller.rb:10
+Completed 422 Unprocessable Entity in 11ms (Views: 0.2ms | ActiveRecord: 2.5ms)
+
+
+Started POST "/api/todos/2/steps" for ::1 at 2021-09-15 11:47:20 -0700
+Processing by Api::StepsController#create as JSON
+  Parameters: {"step"=>{"title"=>"test", "body"=>"testing", "todoId"=>"2", "done"=>"false"}, "todo_id"=>"2"}
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/steps_controller.rb:10
+  [1m[36mTodo Load (1.3ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/steps_controller.rb:10
+  [1m[36mStep Create (2.5ms)[0m  [1m[32mINSERT INTO "steps" ("title", "body", "done", "created_at", "updated_at", "todoId") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "test"], ["body", "testing"], ["done", false], ["created_at", "2021-09-15 18:47:20.452128"], ["updated_at", "2021-09-15 18:47:20.452128"], ["todoId", 2]]
+  ↳ app/controllers/api/steps_controller.rb:10
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/steps_controller.rb:10
+Completed 200 OK in 14ms (Views: 0.5ms | ActiveRecord: 6.4ms)
+
+
+Started DELETE "/api/steps/4" for ::1 at 2021-09-15 11:47:22 -0700
+Processing by Api::StepsController#destroy as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mStep Load (1.6ms)[0m  [1m[34mSELECT  "steps".* FROM "steps" WHERE "steps"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/steps_controller.rb:28
+  [1m[35m (2.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/steps_controller.rb:29
+  [1m[36mStep Destroy (1.4ms)[0m  [1m[31mDELETE FROM "steps" WHERE "steps"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/api/steps_controller.rb:29
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/steps_controller.rb:29
+Completed 200 OK in 12ms (Views: 0.8ms | ActiveRecord: 6.8ms)
+
+

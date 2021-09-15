@@ -15,7 +15,7 @@ export default class StepListItem extends React.Component {
   }
 
   handleDelete(step) {
-    this.props.removeStep(step.id);
+    this.props.deleteStep(step);
   }
 
   render() {
