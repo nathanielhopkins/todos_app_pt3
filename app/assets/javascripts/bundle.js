@@ -1564,9 +1564,7 @@ var createTodo = function createTodo(todo) {
   return $.ajax({
     method: 'POST',
     url: '/api/todos',
-    data: {
-      todo: todo
-    }
+    data: todo
   });
 };
 var updateTodo = function updateTodo(todo) {
