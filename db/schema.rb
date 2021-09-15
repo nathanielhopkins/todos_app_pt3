@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_15_192042) do
+ActiveRecord::Schema.define(version: 2021_09_15_192849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 2021_09_15_192042) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "todoId"
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer "todo_id"
+    t.integer "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["todo_id"], name: "index_taggings_on_todo_id"
   end
 
   create_table "tags", force: :cascade do |t|
