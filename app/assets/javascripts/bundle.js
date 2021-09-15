@@ -668,8 +668,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     updateStep: function updateStep(step) {
       return dispatch((0,_actions_step_actions__WEBPACK_IMPORTED_MODULE_1__.updateStep)(step));
     },
-    removeStep: function removeStep(step) {
-      return dispatch((0,_actions_step_actions__WEBPACK_IMPORTED_MODULE_1__.removeStep)(step));
+    deleteStep: function deleteStep(step) {
+      return dispatch((0,_actions_step_actions__WEBPACK_IMPORTED_MODULE_1__.deleteStep)(step));
     }
   };
 };
