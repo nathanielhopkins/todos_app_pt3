@@ -1489,7 +1489,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "fetchSteps": () => (/* binding */ fetchSteps),
 /* harmony export */   "createStep": () => (/* binding */ createStep),
-/* harmony export */   "updateStep": () => (/* binding */ updateStep)
+/* harmony export */   "updateStep": () => (/* binding */ updateStep),
+/* harmony export */   "deleteStep": () => (/* binding */ deleteStep)
 /* harmony export */ });
 var fetchSteps = function fetchSteps(todoId) {
   return $.ajax({
@@ -1513,6 +1514,12 @@ var updateStep = function updateStep(step) {
     data: {
       step: step
     }
+  });
+};
+var deleteStep = function deleteStep(step) {
+  return $.ajax({
+    method: 'DELETE',
+    url: "/api/steps/".concat(step.id)
   });
 };
 
