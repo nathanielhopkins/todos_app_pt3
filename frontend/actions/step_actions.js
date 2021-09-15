@@ -42,4 +42,9 @@ export const createStep = (todoId, step) => dispatch => (
 export const updateStep = step => dispatch => (
   StepApiUtil.updateStep(step)
     .then(step => dispatch(receiveStep(step)))
-)
+);
+
+export const deleteStep = step => dispatch => (
+  StepApiUtil.deleteStep(step)
+    .then(step => dispatch(removeStep(step.id)))
+);
