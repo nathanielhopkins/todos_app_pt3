@@ -14,10 +14,9 @@ export const createStep = (todoId, step) => {
 };
 
 export const updateStep = step => {
-  let { todoId, id } = step;
   return $.ajax({
     method: 'PATCH',
-    url: `/api/todos/${todoId}/steps/${id}`,
+    url: `/api/steps/${step.id}`,
     data: { step }
   })
 }
