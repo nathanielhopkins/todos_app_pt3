@@ -47,7 +47,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "receiveSteps": () => (/* binding */ receiveSteps),
 /* harmony export */   "removeStep": () => (/* binding */ removeStep),
 /* harmony export */   "fetchSteps": () => (/* binding */ fetchSteps),
-/* harmony export */   "createStep": () => (/* binding */ createStep)
+/* harmony export */   "createStep": () => (/* binding */ createStep),
+/* harmony export */   "updateStep": () => (/* binding */ updateStep)
 /* harmony export */ });
 /* harmony import */ var _util_step_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/step_api_util */ "./frontend/util/step_api_util.js");
 /* harmony import */ var _error_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./error_actions */ "./frontend/actions/error_actions.js");
@@ -88,6 +89,13 @@ var createStep = function createStep(todoId, step) {
       dispatch((0,_error_actions__WEBPACK_IMPORTED_MODULE_1__.clearErrors)());
     }, function (err) {
       return dispatch((0,_error_actions__WEBPACK_IMPORTED_MODULE_1__.receiveErrors)(err.responseJSON));
+    });
+  };
+};
+var updateStep = function updateStep(step) {
+  return function (dispatch) {
+    return _util_step_api_util__WEBPACK_IMPORTED_MODULE_0__.updateStep(step).then(function (step) {
+      return dispatch(receiveStep(step));
     });
   };
 };
@@ -537,7 +545,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ StepListItem)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _reducers_selectors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../reducers/selectors */ "./frontend/reducers/selectors.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -562,7 +569,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var StepListItem = /*#__PURE__*/function (_React$Component) {
   _inherits(StepListItem, _React$Component);
 
@@ -574,9 +580,6 @@ var StepListItem = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, StepListItem);
 
     _this = _super.call(this, props);
-    _this.state = {
-      done: false
-    };
     _this.toggleDone = _this.toggleDone.bind(_assertThisInitialized(_this));
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
     return _this;
@@ -586,9 +589,10 @@ var StepListItem = /*#__PURE__*/function (_React$Component) {
     key: "toggleDone",
     value: function toggleDone(e) {
       e.preventDefault();
-      this.setState({
-        done: !this.state.done
+      var toggled = Object.assign({}, this.props.step, {
+        done: !this.props.step.done
       });
+      this.props.updateStep(toggled);
     }
   }, {
     key: "handleDelete",
@@ -617,7 +621,7 @@ var StepListItem = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "step-list-item-toggle form-button",
         onClick: this.toggleDone
-      }, this.state.done ? "Undo" : "Done"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      }, this.props.step.done ? "Undo" : "Done"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "step-list-item-delete todo-delete",
         onClick: function onClick() {
           return _this2.handleDelete(step);
@@ -653,6 +657,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    updateStep: function updateStep(step) {
+      return dispatch((0,_actions_step_actions__WEBPACK_IMPORTED_MODULE_1__.updateStep)(step));
+    },
     receiveStep: function receiveStep(step) {
       return dispatch((0,_actions_step_actions__WEBPACK_IMPORTED_MODULE_1__.receiveStep)(step));
     },
@@ -1503,11 +1510,9 @@ var createStep = function createStep(todoId, step) {
   });
 };
 var updateStep = function updateStep(step) {
-  var todoId = step.todoId,
-      id = step.id;
   return $.ajax({
     method: 'PATCH',
-    url: "/api/todos/".concat(todoId, "/steps/").concat(id),
+    url: "/api/steps/".concat(step.id),
     data: {
       step: step
     }

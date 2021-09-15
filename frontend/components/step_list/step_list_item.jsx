@@ -1,11 +1,8 @@
 import React from 'react';
-import { stepsByTodoId } from '../../reducers/selectors';
 
 export default class StepListItem extends React.Component {
   constructor(props) {
     super(props)
-
-    this.state = { done: false}
 
     this.toggleDone = this.toggleDone.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -13,7 +10,8 @@ export default class StepListItem extends React.Component {
   
   toggleDone(e) {
     e.preventDefault();
-    this.setState({done: !this.state.done})
+    let toggled = Object.assign({}, this.props.step, { done: !this.props.step.done });
+    this.props.updateStep(toggled);
   }
 
   handleDelete(step) {
@@ -34,7 +32,7 @@ export default class StepListItem extends React.Component {
         <button 
           className='step-list-item-toggle form-button'
           onClick={this.toggleDone}
-          >{this.state.done ? "Undo" : "Done"}</button>
+          >{this.props.step.done ? "Undo" : "Done"}</button>
         <button 
           className='step-list-item-delete todo-delete'
           onClick={() => this.handleDelete(step)}
