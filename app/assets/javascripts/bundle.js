@@ -1484,7 +1484,8 @@ var configureStore = function configureStore() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "fetchSteps": () => (/* binding */ fetchSteps),
-/* harmony export */   "createStep": () => (/* binding */ createStep)
+/* harmony export */   "createStep": () => (/* binding */ createStep),
+/* harmony export */   "updateStep": () => (/* binding */ updateStep)
 /* harmony export */ });
 var fetchSteps = function fetchSteps(todoId) {
   return $.ajax({
@@ -1496,6 +1497,17 @@ var createStep = function createStep(todoId, step) {
   return $.ajax({
     method: 'POST',
     url: "/api/todos/".concat(todoId, "/steps"),
+    data: {
+      step: step
+    }
+  });
+};
+var updateStep = function updateStep(step) {
+  var todoId = step.todoId,
+      id = step.id;
+  return $.ajax({
+    method: 'PATCH',
+    url: "/api/todos/".concat(todoId, "/steps/").concat(id),
     data: {
       step: step
     }
