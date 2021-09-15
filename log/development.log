@@ -3903,3 +3903,11 @@ Migrating to CreateTaggings (20210915192849)
   [1m[36mTag Destroy (27.6ms)[0m  [1m[31mDELETE FROM "tags"[0m
   [1m[36mTag Load (0.7ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
   [1m[36mTag Destroy (2.2ms)[0m  [1m[31mDELETE FROM "tags"[0m
+  [1m[36mStep Load (1.6ms)[0m  [1m[34mSELECT "steps".* FROM "steps"[0m
+  [1m[36mTag Load (3.3ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  [1m[36mTodo Load (2.4ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  [1m[36mTodo Load (0.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  [1m[36mStep Load (1.4ms)[0m  [1m[34mSELECT "steps".* FROM "steps"[0m
+  [1m[36mTag Load (0.5ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  [1m[36mTag Destroy (6.2ms)[0m  [1m[31mDELETE FROM "tags"[0m
+  [1m[36mTag Load (0.6ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m

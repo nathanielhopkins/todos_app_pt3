@@ -1,6 +1,7 @@
 class Todo < ApplicationRecord
   has_many(
     :steps,
+    dependent: :destroy,
     class_name: 'Step',
     foreign_key: :todoId,
     primary_key: :id
