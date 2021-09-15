@@ -9,7 +9,7 @@ export default class TodoForm extends React.Component {
       body: "",
       done: false,
       newTag: "",
-      tags: []
+      tag_names: []
     }
 
     this.deleteTag = this.deleteTag.bind(this);
@@ -22,9 +22,9 @@ export default class TodoForm extends React.Component {
     e.preventDefault();
 
     let idx = e.currentTarget.getAttribute('refkey');
-    let newTags = Array.from(this.state.tags);
+    let newTags = Array.from(this.state.tag_names);
     newTags.splice(idx,1);
-    this.setState({tags: newTags});
+    this.setState({tag_names: newTags});
   }
 
   updateValue(type) {
@@ -32,10 +32,10 @@ export default class TodoForm extends React.Component {
   }
 
   updateTags(event) {
-    let newTags = Array.from(this.state.tags);
+    let newTags = Array.from(this.state.tag_names);
     newTags.push(this.state.newTag);
     this.setState({ newTag: '' });
-    this.setState({ tags: newTags });
+    this.setState({ tag_names: newTags });
   }
 
   submitForm(event) {
@@ -47,7 +47,7 @@ export default class TodoForm extends React.Component {
       title: "",
       body: "",
       newTag: "",
-      tags: []
+      tag_names: []
     }));
   }
 
@@ -93,7 +93,7 @@ export default class TodoForm extends React.Component {
         </div>
 
         <div className='tag-buttons'>
-          {this.state.tags.map((tag, idx) => 
+          {this.state.tag_names.map((tag, idx) => 
           <input 
             type='button'
             className='tag-button'

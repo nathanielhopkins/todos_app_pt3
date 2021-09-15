@@ -861,7 +861,7 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
       body: "",
       done: false,
       newTag: "",
-      tags: []
+      tag_names: []
     };
     _this.deleteTag = _this.deleteTag.bind(_assertThisInitialized(_this));
     _this.updateTags = _this.updateTags.bind(_assertThisInitialized(_this));
@@ -875,10 +875,10 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
     value: function deleteTag(e) {
       e.preventDefault();
       var idx = e.currentTarget.getAttribute('refkey');
-      var newTags = Array.from(this.state.tags);
+      var newTags = Array.from(this.state.tag_names);
       newTags.splice(idx, 1);
       this.setState({
-        tags: newTags
+        tag_names: newTags
       });
     }
   }, {
@@ -893,13 +893,13 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "updateTags",
     value: function updateTags(event) {
-      var newTags = Array.from(this.state.tags);
+      var newTags = Array.from(this.state.tag_names);
       newTags.push(this.state.newTag);
       this.setState({
         newTag: ''
       });
       this.setState({
-        tags: newTags
+        tag_names: newTags
       });
     }
   }, {
@@ -916,7 +916,7 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
           title: "",
           body: "",
           newTag: "",
-          tags: []
+          tag_names: []
         });
       });
     }
@@ -970,7 +970,7 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
         onClick: this.updateTags
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "tag-buttons"
-      }, this.state.tags.map(function (tag, idx) {
+      }, this.state.tag_names.map(function (tag, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
           type: "button",
           className: "tag-button",
