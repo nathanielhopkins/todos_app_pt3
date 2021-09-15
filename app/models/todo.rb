@@ -1,5 +1,10 @@
 class Todo < ApplicationRecord
-  has_many :steps
+  has_many(
+    :steps,
+    class_name: 'Step',
+    foreign_key: :todoId,
+    primary_key: :id
+  )
   has_many :taggings
   has_many :tags, through: :taggings, source: :tag
 

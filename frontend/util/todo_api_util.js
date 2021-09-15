@@ -9,7 +9,7 @@ export const createTodo = todo => (
   $.ajax({
     method: 'POST',
     url: '/api/todos',
-    data: todo
+    data: { todo }
   })
 );
 
