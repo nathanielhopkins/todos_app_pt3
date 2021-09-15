@@ -660,9 +660,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     updateStep: function updateStep(step) {
       return dispatch((0,_actions_step_actions__WEBPACK_IMPORTED_MODULE_1__.updateStep)(step));
     },
-    receiveStep: function receiveStep(step) {
-      return dispatch((0,_actions_step_actions__WEBPACK_IMPORTED_MODULE_1__.receiveStep)(step));
-    },
     removeStep: function removeStep(step) {
       return dispatch((0,_actions_step_actions__WEBPACK_IMPORTED_MODULE_1__.removeStep)(step));
     }
