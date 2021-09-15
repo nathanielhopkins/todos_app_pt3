@@ -38,3 +38,8 @@ export const createStep = (todoId, step) => dispatch => (
       err => dispatch(receiveErrors(err.responseJSON))
     )
 );
+
+export const updateStep = step => dispatch => (
+  StepApiUtil.updateStep(step)
+    .then(step => dispatch(receiveStep(step)))
+)
