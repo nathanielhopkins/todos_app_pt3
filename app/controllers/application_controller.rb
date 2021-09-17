@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
   helper_method :current_user, :logged_in?
 
   private
@@ -26,5 +27,11 @@ class ApplicationController < ActionController::Base
 
   def redirect_if_not_logged_in
     redirect_to new_session_url unless logged_in?
+  end
+
+  def deny_access_if_not_logged_in
+    unless logged_in?
+      render json: ['Access denied: must be logged in'], status: :unauthorized
+    end
   end
 end
