@@ -1,5 +1,5 @@
 <form action="<%= action%>" method="POST">
-
+  <%= render "shared/errors" , errors: flash[:errors], type: :base %>
   <input
     type="hidden"
     name="authenticity_token"
