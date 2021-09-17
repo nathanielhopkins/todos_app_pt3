@@ -12,11 +12,13 @@
     name="user[username]"
     value="<%= user.username %>"
   >
+  <%= render 'shared/errors' , errors: flash[:errors], type: :username %>
   <label for="password-input">Password</label>
   <input
     id="password-input"
     type="password"
     name="user[password]"
   >
+  <%= render 'shared/errors' , errors: flash[:errors], type: :password %>
   <button class="button"><%= submit_text %></button>
 </form>
