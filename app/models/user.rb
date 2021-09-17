@@ -21,4 +21,9 @@ class User < ApplicationRecord
     user = User.find_by(username: user_params[:username])
     user && user.is_password?(user_params[:password]) ? user : nil
   end
+  
+  def reset_session_token!
+    update!(session_token: SecureRandom::urlsafe_base64)
+    session_token
+  end
 end
