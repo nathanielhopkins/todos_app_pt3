@@ -3934,3 +3934,250 @@ Migrating to CreateUser (20210917183303)
   ↳ bin/rails:9
   [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   ↳ bin/rails:9
+Started POST "/users" for ::1 at 2021-09-17 17:50:14 -0700
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/natehopkins/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"nlo0ail5AUjkJpzdIRXKV0fyqDLy0Pjydt2ObSMHr37hSEGjieHmlbioxqmDMrb0ZFlKOInqVoTg7KNk2iltjQ==", "user"=>{"username"=>"test", "password"=>"[FILTERED]"}}
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:9
+  [1m[36mUser Create (5.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "test"], ["password_digest", "$2a$12$UmGumA3T9L2C3kmuL4v3l.8mG3lBJvGKNM00Rr5je6YXOq0ger7h."], ["session_token", "HVDZlNJ0AL9zT9aOokHUKw"], ["created_at", "2021-09-18 00:50:15.448693"], ["updated_at", "2021-09-18 00:50:15.448693"]]
+  ↳ app/controllers/users_controller.rb:9
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:9
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:26
+  [1m[36mUser Update (1.0ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "J8K30P0pISx8gCoVFY444g"], ["updated_at", "2021-09-18 00:50:15.465887"], ["id", 1]]
+  ↳ app/models/user.rb:26
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:26
+Redirected to http://localhost:3000/
+Completed 302 Found in 425ms (ActiveRecord: 21.2ms)
+
+
+Started GET "/" for ::1 at 2021-09-17 17:50:15 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "J8K30P0pISx8gCoVFY444g"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 2216ms (Views: 2196.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/todos" for ::1 at 2021-09-17 17:50:18 -0700
+Processing by Api::TodosController#index as JSON
+  [1m[36mTodo Load (0.8ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:8
+  [1m[36mTag Load (1.8ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."todo_id" = $1[0m  [["todo_id", 11]]
+  ↳ app/controllers/api/todos_controller.rb:8
+Completed 200 OK in 226ms (Views: 178.8ms | ActiveRecord: 33.2ms)
+
+
+Started GET "/" for ::1 at 2021-09-17 17:50:27 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (3.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "J8K30P0pISx8gCoVFY444g"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 39ms (Views: 33.2ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/api/todos" for ::1 at 2021-09-17 17:50:27 -0700
+Processing by Api::TodosController#index as JSON
+  [1m[36mTodo Load (0.8ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:8
+  [1m[36mTag Load (1.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."todo_id" = $1[0m  [["todo_id", 11]]
+  ↳ app/controllers/api/todos_controller.rb:8
+Completed 200 OK in 6ms (Views: 3.3ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/session/new" for ::1 at 2021-09-17 17:50:36 -0700
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "J8K30P0pISx8gCoVFY444g"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+Redirected to http://localhost:3000/
+Filter chain halted as :redirect_if_logged_in rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2021-09-17 17:50:37 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "J8K30P0pISx8gCoVFY444g"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 38ms (Views: 35.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/todos" for ::1 at 2021-09-17 17:50:37 -0700
+Processing by Api::TodosController#index as JSON
+  [1m[36mTodo Load (0.4ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:8
+  [1m[36mTag Load (0.7ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."todo_id" = $1[0m  [["todo_id", 11]]
+  ↳ app/controllers/api/todos_controller.rb:8
+Completed 200 OK in 5ms (Views: 3.3ms | ActiveRecord: 1.1ms)
+
+
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Started GET "/" for ::1 at 2021-09-17 17:57:01 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "J8K30P0pISx8gCoVFY444g"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 50ms (Views: 45.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/todos" for ::1 at 2021-09-17 17:57:01 -0700
+Processing by Api::TodosController#index as JSON
+  [1m[36mTodo Load (2.0ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:8
+  [1m[36mTag Load (2.5ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."todo_id" = $1[0m  [["todo_id", 11]]
+  ↳ app/controllers/api/todos_controller.rb:8
+Completed 200 OK in 11ms (Views: 6.6ms | ActiveRecord: 4.5ms)
+
+
+Started DELETE "/session" for ::1 at 2021-09-17 17:57:06 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"0cA/xrxfxBoBkBdV5i+QG1fHVlYWrlnI5a9VHzZpugCu0koPHMcjx10eTSFECOy4dGy0XG2U975znngWz0d48w=="}
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "J8K30P0pISx8gCoVFY444g"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  [1m[35m (2.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:26
+  [1m[36mUser Update (2.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "pBsgtd2XxyepaM-K18dNmw"], ["updated_at", "2021-09-18 00:57:06.986768"], ["id", 1]]
+  ↳ app/models/user.rb:26
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:26
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 19ms (ActiveRecord: 10.1ms)
+
+
+Started GET "/session/new" for ::1 at 2021-09-17 17:57:07 -0700
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (0.5ms)
+  Rendered shared/_errors.html.erb (0.0ms)
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered shared/_user_form.html.erb (8.0ms)
+  Rendered sessions/new.html.erb within layouts/application (12.4ms)
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+Completed 200 OK in 65ms (Views: 54.6ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/session" for ::1 at 2021-09-17 17:57:12 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"yGTibuYOX9fp5i5R+8nxEu3f1n+kyJM2towXvQlumCa3dpenRpa4CrVodCVZ7o2xznQ0dd/yPUAgvTq08EBa1Q==", "user"=>{"username"=>"test", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+Completed 500 Internal Server Error in 395ms (ActiveRecord: 2.0ms)
+
+
+
+NameError - undefined local variable or method `user_params' for #<SessionsController:0x00007fc1c566e278>
+Did you mean?  users_path:
+  app/controllers/sessions_controller.rb:9:in `create'
+
+Started POST "/__better_errors/44540f300cce05c1/variables" for ::1 at 2021-09-17 17:57:13 -0700
+Started POST "/session" for ::1 at 2021-09-17 17:59:37 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"yGTibuYOX9fp5i5R+8nxEu3f1n+kyJM2towXvQlumCa3dpenRpa4CrVodCVZ7o2xznQ0dd/yPUAgvTq08EBa1Q==", "user"=>{"username"=>"test", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21
+  [1m[35m (3.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:26
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "HgBrn1rbcsbV37-dB6ZHuw"], ["updated_at", "2021-09-18 00:59:37.900850"], ["id", 1]]
+  ↳ app/models/user.rb:26
+  [1m[35m (18.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:26
+Redirected to http://localhost:3000/
+Completed 302 Found in 568ms (ActiveRecord: 66.0ms)
+
+
+Started GET "/" for ::1 at 2021-09-17 17:59:37 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "HgBrn1rbcsbV37-dB6ZHuw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 100ms (Views: 53.7ms | ActiveRecord: 11.2ms)
+
+
+Started GET "/api/todos" for ::1 at 2021-09-17 17:59:38 -0700
+Processing by Api::TodosController#index as JSON
+  [1m[36mTodo Load (0.8ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:8
+  [1m[36mTag Load (1.5ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."todo_id" = $1[0m  [["todo_id", 11]]
+  ↳ app/controllers/api/todos_controller.rb:8
+Completed 200 OK in 150ms (Views: 112.7ms | ActiveRecord: 28.2ms)
+
+
+Started DELETE "/session" for ::1 at 2021-09-17 17:59:39 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"HNnnh5fcja+bz4+6SMvWSSw/dpR6pHOBUNvveyvckLpjy5JON0RqcsdB1c7q7KrqD5SUngGe3ffG6sJy0vJSSQ=="}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "HgBrn1rbcsbV37-dB6ZHuw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:26
+  [1m[36mUser Update (0.9ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "AiiMlA2YH5q2e7VgcpqUPg"], ["updated_at", "2021-09-18 00:59:39.420060"], ["id", 1]]
+  ↳ app/models/user.rb:26
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:26
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 16ms (ActiveRecord: 4.2ms)
+
+
+Started GET "/session/new" for ::1 at 2021-09-17 17:59:39 -0700
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (1.3ms)
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered shared/_user_form.html.erb (14.9ms)
+  Rendered sessions/new.html.erb within layouts/application (20.0ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+Completed 200 OK in 87ms (Views: 80.3ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/session" for ::1 at 2021-09-17 17:59:43 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"SSgigNpRPmCJLXUJGsfUlMy2bU6T8V0eZpjPSbUaTEA2OldJesnZvdWjL3244Kg37x2PROjL82jwqeJATDSOsw==", "user"=>{"username"=>"test", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:26
+  [1m[36mUser Update (2.7ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "aZBZUtSdLSJQ7OG6syGpcg"], ["updated_at", "2021-09-18 00:59:43.756713"], ["id", 1]]
+  ↳ app/models/user.rb:26
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:26
+Redirected to http://localhost:3000/
+Completed 302 Found in 368ms (ActiveRecord: 7.4ms)
+
+
+Started GET "/" for ::1 at 2021-09-17 17:59:43 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "aZBZUtSdLSJQ7OG6syGpcg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 63ms (Views: 55.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/todos" for ::1 at 2021-09-17 17:59:44 -0700
+Processing by Api::TodosController#index as JSON
+  [1m[36mTodo Load (2.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:8
+  [1m[36mTag Load (15.7ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."todo_id" = $1[0m  [["todo_id", 11]]
+  ↳ app/controllers/api/todos_controller.rb:8
+Completed 200 OK in 24ms (Views: 5.3ms | ActiveRecord: 18.0ms)
+
+

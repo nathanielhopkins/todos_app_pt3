@@ -34,4 +34,8 @@ class ApplicationController < ActionController::Base
       render json: ['Access denied: must be logged in'], status: :unauthorized
     end
   end
+  
+  def user_params
+    params.require(:user).permit(:username, :password)
+  end
 end
