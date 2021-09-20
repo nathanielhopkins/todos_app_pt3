@@ -11,7 +11,7 @@ class Todo < ApplicationRecord
 
   belongs_to :user
 
-  validates :title, :body, presence: true
+  validates :title, :body, :user_id, presence: true
   validates :done, inclusion: { in: [true, false] }
 
   def tag_names=(tag_names)
