@@ -278,3 +278,59 @@ body {
   flex-direction: column;
   padding: 20px;
 }
+
+
+/* User Form  */
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: rgba(236, 204, 122, 0.918);
+  border-radius: 5px;
+  width: 280px;
+  box-shadow:
+    3px 3px 0 #000,
+    -1px 0px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.user-text-label {
+  margin: 5px;
+}
+
+.user-text-input {
+  font-family: Urbanist;
+  background-color: white;
+  height: 25px;
+  width: 250px;
+  padding-left: 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.sub-header {
+  text-align: center;
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.session-toggle {
+  text-align: center;
+  display: block;
+  width: 90px;
+  margin: 40px auto;
+  padding: 5px 10px; 
+  background:rgb(18, 92, 18);
+  border-radius: 5px;
+  color: white;
+}
+
+.session-toggle:hover {
+  color: yellow;
+  background: rgb(15, 80, 15);
+}
