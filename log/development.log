@@ -5785,3 +5785,31 @@ Completed 200 OK in 15ms (Views: 3.4ms | ActiveRecord: 4.3ms)
 
 
   [1m[36mTodo Load (0.9ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+Started GET "/api/todos/12/steps" for ::1 at 2021-09-20 13:59:32 -0700
+Processing by Api::StepsController#index as JSON
+  Parameters: {"todo_id"=>"12"}
+  [1m[36mTodo Load (0.7ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/api/steps_controller.rb:3
+  [1m[36mStep Load (0.8ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."todoId" = $1[0m  [["todoId", 12]]
+  ↳ app/controllers/api/steps_controller.rb:4
+Completed 200 OK in 8ms (Views: 1.9ms | ActiveRecord: 2.5ms)
+
+
+Started DELETE "/api/todos/12" for ::1 at 2021-09-20 13:59:34 -0700
+Processing by Api::TodosController#destroy as JSON
+  Parameters: {"id"=>"12"}
+  [1m[36mTodo Load (0.6ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/api/todos_controller.rb:30
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/todos_controller.rb:31
+  [1m[36mStep Load (1.2ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."todoId" = $1[0m  [["todoId", 12]]
+  ↳ app/controllers/api/todos_controller.rb:31
+  [1m[36mTodo Destroy (0.7ms)[0m  [1m[31mDELETE FROM "todos" WHERE "todos"."id" = $1[0m  [["id", 12]]
+  ↳ app/controllers/api/todos_controller.rb:31
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/todos_controller.rb:31
+  [1m[36mTag Load (1.9ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."todo_id" = $1[0m  [["todo_id", 12]]
+  ↳ app/controllers/api/todos_controller.rb:32
+Completed 200 OK in 20ms (Views: 7.4ms | ActiveRecord: 6.5ms)
+
+

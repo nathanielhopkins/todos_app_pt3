@@ -5,7 +5,7 @@ class Api::TodosController < ApplicationController
   end
 
   def index
-    render json: Todo.all, include: :tags
+    render json: Todo.all.where(user_id: current_user.id), include: :tags
   end
 
   def create
@@ -18,7 +18,7 @@ class Api::TodosController < ApplicationController
   end
 
   def update
-    @todo = Todo.find(params[:id])
+    @todo = current_user.todos.find(params[:id])
     if @todo.update(todo_params)
       render json: @todo, include: :tags
     else 
@@ -27,7 +27,7 @@ class Api::TodosController < ApplicationController
   end
 
   def destroy
-    @todo = Todo.find(params[:id])
+    @todo = current_user.todos.find(params[:id])
     @todo.destroy
     render json: @todo, include: :tags
   end
