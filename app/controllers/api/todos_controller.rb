@@ -9,7 +9,7 @@ class Api::TodosController < ApplicationController
   end
 
   def create
-    @todo = Todo.new(todo_params)
+    @todo = current_user.todos.new(todo_params)
     if @todo.save
       render json: @todo, include: :tags
     else
@@ -34,6 +34,6 @@ class Api::TodosController < ApplicationController
 
   private
   def todo_params
-    params.require(:todo).permit(:title, :body, :done, tag_names: [])
+    params.require(:todo).permit(:title, :body, :done, :user_id, tag_names: [])
   end
 end
