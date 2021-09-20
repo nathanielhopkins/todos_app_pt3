@@ -5488,3 +5488,188 @@ Processing by SessionsController#new as HTML
 Completed 200 OK in 89ms (Views: 82.6ms | ActiveRecord: 0.9ms)
 
 
+Started GET "/session/new" for ::1 at 2021-09-20 13:33:58 -0700
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (0.6ms)
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered shared/_user_form.html.erb (7.8ms)
+  Rendered sessions/new.html.erb within layouts/application (10.7ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+Completed 200 OK in 56ms (Views: 48.4ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/session" for ::1 at 2021-09-20 13:34:04 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"01vPqS0cAChsA005MHUqR37ZiTfp4lyXuy1GtclvZjWsSbpgjYTn9TCNF02SUlbkXXJrPZLY8uEtHGu8MEGkxg==", "user"=>{"username"=>"test", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:26
+  [1m[36mUser Update (3.7ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "ycUWR6lFzfSDX4GEhvt4Bg"], ["updated_at", "2021-09-20 20:34:04.662046"], ["id", 1]]
+  ↳ app/models/user.rb:26
+  [1m[35m (5.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:26
+Redirected to http://localhost:3000/
+Completed 302 Found in 659ms (ActiveRecord: 12.6ms)
+
+
+Started GET "/" for ::1 at 2021-09-20 13:34:04 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "ycUWR6lFzfSDX4GEhvt4Bg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 83ms (Views: 73.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/todos" for ::1 at 2021-09-20 13:34:05 -0700
+Processing by Api::TodosController#index as JSON
+  [1m[36mTodo Load (2.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:8
+  [1m[36mTag Load (5.6ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."todo_id" = $1[0m  [["todo_id", 11]]
+  ↳ app/controllers/api/todos_controller.rb:8
+Completed 200 OK in 33ms (Views: 24.6ms | ActiveRecord: 8.1ms)
+
+
+Started DELETE "/session" for ::1 at 2021-09-20 13:34:12 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"N1i2WEuff2nW2Fzb9F70QwXtQ0+N8gSQHsb8MEypnR5ISsOR6weYtIpWBq9WeYjgJkahRfbIquaI99E5tYdf7Q=="}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "ycUWR6lFzfSDX4GEhvt4Bg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  [1m[35m (2.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:26
+  [1m[36mUser Update (1.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "8Gv8UGv_eUJAWekE7SoP-A"], ["updated_at", "2021-09-20 20:34:12.633636"], ["id", 1]]
+  ↳ app/models/user.rb:26
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:26
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 15ms (ActiveRecord: 8.1ms)
+
+
+Started GET "/session/new" for ::1 at 2021-09-20 13:34:12 -0700
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (0.7ms)
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered shared/_user_form.html.erb (7.8ms)
+  Rendered sessions/new.html.erb within layouts/application (11.0ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+Completed 200 OK in 54ms (Views: 49.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/session/new" for ::1 at 2021-09-20 13:34:45 -0700
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (0.5ms)
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered shared/_errors.html.erb (0.0ms)
+  Rendered shared/_user_form.html.erb (14.4ms)
+  Rendered sessions/new.html.erb within layouts/application (18.7ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+Completed 200 OK in 83ms (Views: 74.7ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/session/new" for ::1 at 2021-09-20 13:35:06 -0700
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (1.0ms)
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered shared/_user_form.html.erb (13.8ms)
+  Rendered sessions/new.html.erb within layouts/application (19.5ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+Completed 200 OK in 83ms (Views: 74.0ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/session/new" for ::1 at 2021-09-20 13:35:15 -0700
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (1.0ms)
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered shared/_user_form.html.erb (9.6ms)
+  Rendered sessions/new.html.erb within layouts/application (13.5ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+Completed 200 OK in 74ms (Views: 67.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/session/new" for ::1 at 2021-09-20 13:35:24 -0700
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (1.6ms)
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered shared/_errors.html.erb (1.0ms)
+  Rendered shared/_user_form.html.erb (10.8ms)
+  Rendered sessions/new.html.erb within layouts/application (14.8ms)
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+Completed 200 OK in 84ms (Views: 73.9ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/session/new" for ::1 at 2021-09-20 13:35:47 -0700
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (0.7ms)
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered shared/_user_form.html.erb (11.9ms)
+  Rendered sessions/new.html.erb within layouts/application (16.0ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+Completed 200 OK in 68ms (Views: 60.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/session/new" for ::1 at 2021-09-20 13:36:03 -0700
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (0.6ms)
+  Rendered shared/_errors.html.erb (0.0ms)
+  Rendered shared/_errors.html.erb (0.0ms)
+  Rendered shared/_user_form.html.erb (9.4ms)
+  Rendered sessions/new.html.erb within layouts/application (13.5ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+Completed 200 OK in 67ms (Views: 60.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/session/new" for ::1 at 2021-09-20 13:36:12 -0700
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (0.7ms)
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered shared/_errors.html.erb (0.0ms)
+  Rendered shared/_user_form.html.erb (10.2ms)
+  Rendered sessions/new.html.erb within layouts/application (14.6ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+Completed 200 OK in 67ms (Views: 61.6ms | ActiveRecord: 1.7ms)
+
+
