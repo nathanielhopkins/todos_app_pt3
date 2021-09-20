@@ -5813,3 +5813,311 @@ Processing by Api::TodosController#destroy as JSON
 Completed 200 OK in 20ms (Views: 7.4ms | ActiveRecord: 6.5ms)
 
 
+  [1m[36mTodo Load (1.2ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+Started GET "/" for ::1 at 2021-09-20 15:46:38 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "M5BoEOJAHl6zrrM8YFcJLQ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 91ms (Views: 56.0ms | ActiveRecord: 16.8ms)
+
+
+Started GET "/api/todos" for ::1 at 2021-09-20 15:46:39 -0700
+Processing by Api::TodosController#index as JSON
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "M5BoEOJAHl6zrrM8YFcJLQ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  [1m[36mTodo Load (1.0ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/api/todos_controller.rb:8
+Completed 200 OK in 58ms (Views: 6.1ms | ActiveRecord: 6.4ms)
+
+
+Started POST "/api/todos" for ::1 at 2021-09-20 15:47:07 -0700
+Processing by Api::TodosController#create as JSON
+  Parameters: {"todo"=>{"title"=>"current_user test", "body"=>"make sure we only show current users todos", "done"=>"false", "newTag"=>"", "tag_names"=>["testing"]}}
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "M5BoEOJAHl6zrrM8YFcJLQ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+Unpermitted parameter: :newTag
+  [1m[36mTag Load (0.9ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."name" = $1 LIMIT $2[0m  [["name", "testing"], ["LIMIT", 1]]
+  ↳ app/models/todo.rb:19
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/todo.rb:19
+  [1m[36mTag Create (0.7ms)[0m  [1m[32mINSERT INTO "tags" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "testing"], ["created_at", "2021-09-20 22:47:07.172732"], ["updated_at", "2021-09-20 22:47:07.172732"]]
+  ↳ app/models/todo.rb:19
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/todo.rb:19
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/todos_controller.rb:13
+  [1m[36mTodo Create (0.9ms)[0m  [1m[32mINSERT INTO "todos" ("title", "body", "done", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "current_user test"], ["body", "make sure we only show current users todos"], ["done", false], ["created_at", "2021-09-20 22:47:07.216799"], ["updated_at", "2021-09-20 22:47:07.216799"], ["user_id", 1]]
+  ↳ app/controllers/api/todos_controller.rb:13
+  [1m[36mTagging Create (1.1ms)[0m  [1m[32mINSERT INTO "taggings" ("todo_id", "tag_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["todo_id", 13], ["tag_id", 11], ["created_at", "2021-09-20 22:47:07.220288"], ["updated_at", "2021-09-20 22:47:07.220288"]]
+  ↳ app/controllers/api/todos_controller.rb:13
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/todos_controller.rb:13
+Completed 200 OK in 123ms (Views: 0.7ms | ActiveRecord: 32.2ms)
+
+
+Started GET "/api/todos/13/steps" for ::1 at 2021-09-20 15:47:08 -0700
+Processing by Api::StepsController#index as JSON
+  Parameters: {"todo_id"=>"13"}
+  [1m[36mTodo Load (0.9ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/api/steps_controller.rb:3
+  [1m[36mStep Load (0.5ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."todoId" = $1[0m  [["todoId", 13]]
+  ↳ app/controllers/api/steps_controller.rb:4
+Completed 200 OK in 18ms (Views: 4.5ms | ActiveRecord: 4.6ms)
+
+
+Started DELETE "/session" for ::1 at 2021-09-20 15:47:12 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"kxuO8JyvpASsr3N1TxDhpbTMQOd4K1uWY67ZxYKfErHsCfs5PDdD2fAhKQHtN50Gl2ei7QMR9eD1n/TMe7HQQg=="}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "M5BoEOJAHl6zrrM8YFcJLQ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:28
+  [1m[36mUser Update (0.9ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "0hjCBZxhRLrCq4m5EkwKCA"], ["updated_at", "2021-09-20 22:47:12.953983"], ["id", 1]]
+  ↳ app/models/user.rb:28
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:28
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 10ms (ActiveRecord: 3.4ms)
+
+
+Started GET "/session/new" for ::1 at 2021-09-20 15:47:12 -0700
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (0.8ms)
+  Rendered shared/_errors.html.erb (0.0ms)
+  Rendered shared/_errors.html.erb (0.0ms)
+  Rendered shared/_user_form.html.erb (8.5ms)
+  Rendered sessions/new.html.erb within layouts/application (13.0ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+Completed 200 OK in 63ms (Views: 54.3ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/session" for ::1 at 2021-09-20 15:47:18 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"mibcF6+/F3CiCh1hOQESDb8YlLSnHm1hUirbchZpDr7lNKneDyfwrf6ERxWbJm6unLN2vtwkwxfEG/Z770fMTQ==", "user"=>{"username"=>"bob49", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "bob49"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:23
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (0.9ms)
+  Rendered shared/_errors.html.erb (0.0ms)
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered shared/_user_form.html.erb (7.9ms)
+  Rendered sessions/new.html.erb within layouts/application (10.4ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+Completed 200 OK in 45ms (Views: 35.4ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/users/new" for ::1 at 2021-09-20 15:47:20 -0700
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (0.6ms)
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered shared/_errors.html.erb (0.0ms)
+  Rendered shared/_user_form.html.erb (11.3ms)
+  Rendered users/new.html.erb within layouts/application (14.3ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+Completed 200 OK in 46ms (Views: 43.0ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/users" for ::1 at 2021-09-20 15:47:26 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"Esucxyg2hgWh5ybjZfdVUDQ9H/3OIjn+b0iNWNhLP+ht2ekOiK5h2P1pfJfH0CnzF5b997UYl4j5eaBRIWX9Gw==", "user"=>{"username"=>"bob49", "password"=>"[FILTERED]"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:9
+  [1m[36mUser Create (2.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "bob49"], ["password_digest", "$2a$12$zjKhRI.O6r8yMmdoNiDsS.8gL.cFb0zOoCVqVAX1x/c9E4AIsO16W"], ["session_token", "538oVvjJhdsYlsYXUjFokw"], ["created_at", "2021-09-20 22:47:26.558088"], ["updated_at", "2021-09-20 22:47:26.558088"]]
+  ↳ app/controllers/users_controller.rb:9
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:9
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:28
+  [1m[36mUser Update (1.4ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "t1CdyQ4TJ8MndLmUy631Ug"], ["updated_at", "2021-09-20 22:47:26.717385"], ["id", 2]]
+  ↳ app/models/user.rb:28
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:28
+Redirected to http://localhost:3000/
+Completed 302 Found in 495ms (ActiveRecord: 8.1ms)
+
+
+Started GET "/" for ::1 at 2021-09-20 15:47:26 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (8.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "t1CdyQ4TJ8MndLmUy631Ug"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 68ms (Views: 54.2ms | ActiveRecord: 8.8ms)
+
+
+Started GET "/api/todos" for ::1 at 2021-09-20 15:47:27 -0700
+Processing by Api::TodosController#index as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "t1CdyQ4TJ8MndLmUy631Ug"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  [1m[36mTodo Load (0.4ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/api/todos_controller.rb:8
+Completed 200 OK in 7ms (Views: 3.0ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/api/todos" for ::1 at 2021-09-20 15:47:59 -0700
+Processing by Api::TodosController#create as JSON
+  Parameters: {"todo"=>{"title"=>"take a walk", "body"=>"clear your head", "done"=>"false", "newTag"=>"", "tag_names"=>["healthy"]}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "t1CdyQ4TJ8MndLmUy631Ug"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+Unpermitted parameter: :newTag
+  [1m[36mTag Load (1.4ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."name" = $1 LIMIT $2[0m  [["name", "healthy"], ["LIMIT", 1]]
+  ↳ app/models/todo.rb:19
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/todo.rb:19
+  [1m[36mTag Create (0.6ms)[0m  [1m[32mINSERT INTO "tags" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "healthy"], ["created_at", "2021-09-20 22:47:59.353999"], ["updated_at", "2021-09-20 22:47:59.353999"]]
+  ↳ app/models/todo.rb:19
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/todo.rb:19
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/todos_controller.rb:13
+  [1m[36mTodo Create (0.9ms)[0m  [1m[32mINSERT INTO "todos" ("title", "body", "done", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "take a walk"], ["body", "clear your head"], ["done", false], ["created_at", "2021-09-20 22:47:59.363597"], ["updated_at", "2021-09-20 22:47:59.363597"], ["user_id", 2]]
+  ↳ app/controllers/api/todos_controller.rb:13
+  [1m[36mTagging Create (0.8ms)[0m  [1m[32mINSERT INTO "taggings" ("todo_id", "tag_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["todo_id", 14], ["tag_id", 12], ["created_at", "2021-09-20 22:47:59.366553"], ["updated_at", "2021-09-20 22:47:59.366553"]]
+  ↳ app/controllers/api/todos_controller.rb:13
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/todos_controller.rb:13
+Completed 200 OK in 25ms (Views: 0.9ms | ActiveRecord: 8.3ms)
+
+
+Started GET "/api/todos/14/steps" for ::1 at 2021-09-20 15:48:00 -0700
+Processing by Api::StepsController#index as JSON
+  Parameters: {"todo_id"=>"14"}
+  [1m[36mTodo Load (20.4ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/api/steps_controller.rb:3
+  [1m[36mStep Load (13.6ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."todoId" = $1[0m  [["todoId", 14]]
+  ↳ app/controllers/api/steps_controller.rb:4
+Completed 200 OK in 38ms (Views: 2.0ms | ActiveRecord: 34.0ms)
+
+
+Started GET "/api/todos/14/steps" for ::1 at 2021-09-20 15:48:03 -0700
+Processing by Api::StepsController#index as JSON
+  Parameters: {"todo_id"=>"14"}
+  [1m[36mTodo Load (1.3ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/api/steps_controller.rb:3
+  [1m[36mStep Load (1.0ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."todoId" = $1[0m  [["todoId", 14]]
+  ↳ app/controllers/api/steps_controller.rb:4
+Completed 200 OK in 6ms (Views: 1.4ms | ActiveRecord: 2.3ms)
+
+
+Started POST "/api/todos/14/steps" for ::1 at 2021-09-20 15:48:19 -0700
+Processing by Api::StepsController#create as JSON
+  Parameters: {"step"=>{"title"=>"put on shoes", "body"=>"use your good walking shoes", "todoId"=>"14", "done"=>"false"}, "todo_id"=>"14"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/steps_controller.rb:10
+  [1m[36mTodo Load (0.5ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/api/steps_controller.rb:10
+  [1m[36mStep Create (2.3ms)[0m  [1m[32mINSERT INTO "steps" ("title", "body", "done", "created_at", "updated_at", "todoId") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "put on shoes"], ["body", "use your good walking shoes"], ["done", false], ["created_at", "2021-09-20 22:48:19.390905"], ["updated_at", "2021-09-20 22:48:19.390905"], ["todoId", 14]]
+  ↳ app/controllers/api/steps_controller.rb:10
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/steps_controller.rb:10
+Completed 200 OK in 32ms (Views: 0.5ms | ActiveRecord: 11.0ms)
+
+
+Started GET "/api/todos/14/steps" for ::1 at 2021-09-20 15:48:21 -0700
+Processing by Api::StepsController#index as JSON
+  Parameters: {"todo_id"=>"14"}
+  [1m[36mTodo Load (1.4ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/api/steps_controller.rb:3
+  [1m[36mStep Load (0.8ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."todoId" = $1[0m  [["todoId", 14]]
+  ↳ app/controllers/api/steps_controller.rb:4
+Completed 200 OK in 7ms (Views: 3.0ms | ActiveRecord: 2.2ms)
+
+
+Started DELETE "/session" for ::1 at 2021-09-20 15:48:25 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"DcRYhYTu1MYIZwt30xNLexF0E3VPgtSw98sBvtdRuaZy1i1MJHYzG1TpUQNxNDfYMt/xfzS4esZh+iy3Ln97VQ=="}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "t1CdyQ4TJ8MndLmUy631Ug"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  [1m[35m (2.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:28
+  [1m[36mUser Update (1.8ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "3RjBnoFB-cDRsYi6jdYO5g"], ["updated_at", "2021-09-20 22:48:25.561264"], ["id", 2]]
+  ↳ app/models/user.rb:28
+  [1m[35m (3.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:28
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 20ms (ActiveRecord: 8.9ms)
+
+
+Started GET "/session/new" for ::1 at 2021-09-20 15:48:25 -0700
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (0.6ms)
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered shared/_errors.html.erb (0.0ms)
+  Rendered shared/_user_form.html.erb (8.3ms)
+  Rendered sessions/new.html.erb within layouts/application (11.5ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+Completed 200 OK in 49ms (Views: 43.7ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/session" for ::1 at 2021-09-20 15:48:28 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"tmHEF8JS7QeSpP/4oBOxQDB4HkiIVEmE9mzwR6REUw/Jc7HeYsoK2s4qpYwCNM3jE9P8QvNu5/JgXd1OXWqR/A==", "user"=>{"username"=>"test", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:23
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:28
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "IJ2AQ8CXnOHpimDeaNMV0w"], ["updated_at", "2021-09-20 22:48:29.180698"], ["id", 1]]
+  ↳ app/models/user.rb:28
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:28
+Redirected to http://localhost:3000/
+Completed 302 Found in 308ms (ActiveRecord: 5.2ms)
+
+
+Started GET "/" for ::1 at 2021-09-20 15:48:29 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "IJ2AQ8CXnOHpimDeaNMV0w"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 28ms (Views: 25.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/todos" for ::1 at 2021-09-20 15:48:29 -0700
+Processing by Api::TodosController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "IJ2AQ8CXnOHpimDeaNMV0w"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:7
+  [1m[36mTodo Load (0.7ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/api/todos_controller.rb:8
+  [1m[36mTag Load (1.7ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."todo_id" = $1[0m  [["todo_id", 13]]
+  ↳ app/controllers/api/todos_controller.rb:8
+Completed 200 OK in 94ms (Views: 25.8ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/api/todos/13/steps" for ::1 at 2021-09-20 15:48:32 -0700
+Processing by Api::StepsController#index as JSON
+  Parameters: {"todo_id"=>"13"}
+  [1m[36mTodo Load (1.5ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/api/steps_controller.rb:3
+  [1m[36mStep Load (1.5ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."todoId" = $1[0m  [["todoId", 13]]
+  ↳ app/controllers/api/steps_controller.rb:4
+Completed 200 OK in 6ms (Views: 1.8ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/api/todos/13/steps" for ::1 at 2021-09-20 15:48:35 -0700
+Processing by Api::StepsController#index as JSON
+  Parameters: {"todo_id"=>"13"}
+  [1m[36mTodo Load (0.8ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/api/steps_controller.rb:3
+  [1m[36mStep Load (0.8ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."todoId" = $1[0m  [["todoId", 13]]
+  ↳ app/controllers/api/steps_controller.rb:4
+Completed 200 OK in 5ms (Views: 1.7ms | ActiveRecord: 1.6ms)
+
+
